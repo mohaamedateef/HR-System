@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title>Hr-system</title>
+     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HRSystemProject.styles.css" asp-append-version="true" />
     <link rel="apple-touch-icon" sizes="60x60" href="~/app-assets/img/ico/apple-icon-60.html">
     <link rel="apple-touch-icon" sizes="76x76" href="~/app-assets/img/ico/apple-icon-76.html">
     <link rel="apple-touch-icon" sizes="120x120" href="~/app-assets/img/ico/apple-icon-120.html">
@@ -22,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/prism.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/chartist.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/app.css">
+  
+
   </head>
   <body data-col="2-columns" class=" 2-columns ">
     <div class="wrapper">
@@ -43,14 +48,13 @@
                 <li class="has-sub nav-item">
                    <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title"> Employees</span></a>
                    <ul class="menu-content">
-                      <li><a href="employees.html" class="menu-item"> <i class="icon-bar"></i> Employees Statistics</a>
+                      <li><a asp-action="Index" asp-controller="Employee" class="menu-item"> <i class="icon-bar"></i> Employees Statistics</a>
                       </li>
-                      <li><a href="add_employee.html" class="menu-item">Add Employee</a>
+                      <li><a asp-action="Add" asp-controller="Employee" class="menu-item">Add Employee</a>
                       </li>
                    </ul>
                 </li>
-                <li class=" nav-item"><a href="add_employee.html"><i class="icon-note"></i><span data-i18n="" class="menu-title">Add Employee</span></a>
-                </li>
+                
                 <li class=" nav-item"><a href="general_settings.html"><i class="icon-pie-chart"></i><span data-i18n="" class="menu-title">
                    General Settings</span></a>
                 </li>
@@ -385,5 +389,9 @@
     <script src="~/app-assets/js/notification-sidebar.js"></script>
     <script src="~/app-assets/js/customizer.js"></script>
     <script src="~/app-assets/js/dashboard-ecommerce.js"></script>
+     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
   </body>
 </html>
