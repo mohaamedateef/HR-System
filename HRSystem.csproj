@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="ActionFiltters\" />
-    <Folder Include="Attributes\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\WeeklyHoliday\" />
     <Folder Include="Views\Salary\" />
   </ItemGroup>
@@ -24,13 +22,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
     <Folder Include="Views\Attendance\" />
     <Folder Include="Views\Department\" />
-    <Folder Include="Views\Employee\" />
     <Folder Include="Views\Exception\" />
     <Folder Include="Views\Hr\" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
   </ItemGroup>
 
 </Project>
