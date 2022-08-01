@@ -26,7 +26,7 @@ namespace HRSystem
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            // comment
             //DBContext + Identity Dbcontext Injaction
             builder.Services.AddDbContext<HRDbContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("HrDB")));
