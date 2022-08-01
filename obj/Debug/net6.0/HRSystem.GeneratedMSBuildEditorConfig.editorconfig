@@ -8,41 +8,41 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HRSystem
 build_property.RootNamespace = HRSystem
-build_property.ProjectDir = E:\Hr System\HrSystemLast\HR-System\
+build_property.ProjectDir = D:\My intensive Code camp\ITI GP project\HR-System\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\Hr System\HrSystemLast\HR-System
+build_property.MSBuildProjectDirectory = D:\My intensive Code camp\ITI GP project\HR-System
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/GeneralSetting/Index.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/GeneralSetting/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VuZXJhbFNldHRpbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/Home/Index.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/Home/Privacy.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/Shared/_HrLayout.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/Shared/_HrLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IckxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/_ViewImports.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/_ViewStart.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Hr System/HrSystemLast/HR-System/Views/Shared/_Layout.cshtml]
+[D:/My intensive Code camp/ITI GP project/HR-System/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1mxanlv0yq
