@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lMSYC/L5+YAovIVc1VZjAM8LpzyZxi8HnjX7ib6i5AY=",
+  "Hash": "72wAG0xb87EOOWk3aw2IyrVVWG5AWP5Voapg94Gi8zQ=",
   "Source": "HRSystem",
   "BasePath": "_content/HRSystem",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app-assets\\css\\app.css"
+    },
+    {
+      "Identity": "E:\\Hr System\\HrSystemLast\\HR-System\\wwwroot\\app-assets\\css\\login.css",
+      "SourceId": "HRSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Hr System\\HrSystemLast\\HR-System\\wwwroot\\",
+      "BasePath": "_content/HRSystem",
+      "RelativePath": "app-assets/css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app-assets\\css\\login.css"
     },
     {
       "Identity": "E:\\Hr System\\HrSystemLast\\HR-System\\wwwroot\\app-assets\\fonts\\feather\\fonts\\feather2467.eot",

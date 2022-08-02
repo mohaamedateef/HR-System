@@ -30,7 +30,11 @@ namespace HRSystem
             //DBContext + Identity Dbcontext Injaction
             builder.Services.AddDbContext<HRDbContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("HrDB")));
-            builder.Services.AddIdentity<Hr, IdentityRole>().AddEntityFrameworkStores<HRDbContext>();
+            builder.Services.AddIdentity<Hr, IdentityRole>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
+            }).AddEntityFrameworkStores<HRDbContext>();
             builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
             builder.Services.AddScoped<IDepartmentRepository, DepatrmentRepository>();
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
@@ -47,6 +51,7 @@ namespace HRSystem
             builder.Services.AddScoped<IGeneralSettingService, GeneralSettingService>();
             builder.Services.AddScoped<IWeeklyHolidayService, WeeklyHolidayService>();
             builder.Services.AddScoped<IExceptionService, ExceptionService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
 
             var app = builder.Build();
 
