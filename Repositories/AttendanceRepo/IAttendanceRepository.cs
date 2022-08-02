@@ -2,5 +2,6 @@
 {
     public interface IAttendanceRepository
     {
+        List<Attendance> GetAllAttendences();
     }
 }

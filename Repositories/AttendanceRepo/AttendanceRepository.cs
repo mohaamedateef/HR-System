@@ -9,5 +9,12 @@ namespace HRSystem.Repositories.AttendanceRepo
         {
             this.context = context;
         }
+
+
+        public List<Attendance> GetAllAttendences()
+        {
+            List<Attendance> attendances = context.Attendances.ToList();
+            return attendances;
+        }
     }
 }
