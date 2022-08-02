@@ -6,7 +6,7 @@ namespace HRSystem.Controllers
     {
         private readonly IGeneralSettingService GeneralService;
         private readonly IWeeklyHolidayService WeeklyHolidayService;
-        public GeneralSettingController(IGeneralSettingService GeneralService)
+        public GeneralSettingController(IGeneralSettingService GeneralService,IWeeklyHolidayService WeeklyHolidayService)
         {
             this.GeneralService = GeneralService;
             this.WeeklyHolidayService = WeeklyHolidayService;
