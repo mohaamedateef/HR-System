@@ -2025,11 +2025,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mohamed Atef\\Downloads\\HRSystemProject\\HRSystem.csproj",
+      "projectUniqueName": "C:\\Users\\Mohamed Atef\\Desktop\\'\\HR-System\\HRSystem.csproj",
       "projectName": "HRSystem",
-      "projectPath": "C:\\Users\\Mohamed Atef\\Downloads\\HRSystemProject\\HRSystem.csproj",
+      "projectPath": "C:\\Users\\Mohamed Atef\\Desktop\\'\\HR-System\\HRSystem.csproj",
       "packagesPath": "C:\\Users\\Mohamed Atef\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mohamed Atef\\Downloads\\HRSystemProject\\obj\\",
+      "outputPath": "C:\\Users\\Mohamed Atef\\Desktop\\'\\HR-System\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

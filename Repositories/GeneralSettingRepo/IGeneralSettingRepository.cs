@@ -2,6 +2,8 @@
 {
     public interface IGeneralSettingRepository
     {
-
+        List<GeneralSetting> GetAll();
+        GeneralSetting GetById(int id);
+        void Insert(GeneralSetting NewGeneralSetting);
     }
 }

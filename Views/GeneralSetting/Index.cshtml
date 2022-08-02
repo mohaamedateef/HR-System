@@ -1,4 +1,8 @@
-﻿<div class="card">
+﻿@model GeneralSettingViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="card">
   <div class="card-header">
     <div class="card-title-wrap bar-success">
       <h4 class="card-title" id="horz-layout-basic">General Settings Form</h4>
@@ -10,36 +14,23 @@
   </div>
   <div class="card-body">
     <div class="px-3">
-      <form class="form form-horizontal">
+      <form class="form form-horizontal" asp-action="Save" asp-controller="GeneralSetting">
         <div class="form-body">
           <h4 class="form-section">
             <i class="icon-user"></i>General information
           </h4>
           <div class="form-group row">
-            <label class="col-md-3 label-control" for="projectinput1"
-              >The extra:
-            </label>
+            <label class="col-md-3 label-control" asp-for="Extra"></label>
             <div class="col-md-9">
-              <input
-                type="text"
-                id="projectinput1"
-                class="form-control"
-                name="extra"
-              />
+              <input type="text" class="form-control mb-1" asp-for="Extra" value="@Model.Extra"/>
+              <span asp-validation-for="Extra" class="text-danger"></span>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 label-control" for="projectinput2">
-              Discount:
-            </label>
+            <label class="col-md-3 label-control" asp-for="Discount"> </label>
             <div class="col-md-9">
-              <input
-                type="text"
-                id="projectinput2"
-                class="form-control"
-                name="
-                            Discount"
-              />
+              <input type="text" class="form-control mb-1" asp-for="Discount" value="@Model.Discount" />
+              <span asp-validation-for="Discount" class="text-danger"></span>
             </div>
           </div>
           <div class="form-group row">
@@ -47,28 +38,22 @@
               >Weekly Holidays:
             </label>
             <div class="col-md-9">
-              <form action="/action_page.php">
-                <input type="checkbox" id="vehicle1" name="sat" />
-                <label for="sat"> Satrday</label><br />
-                <input type="checkbox" id="vehicle2" name="sun" />
-                <label for="sun"> Sunday</label><br />
-                <input type="checkbox" id="vehicle3" name="mon" />
-                <label for="mon"> Monday</label><br />
-                <input type="checkbox" id="vehicle2" name="sun" />
-                <label for="sun"> Tuesday</label><br />
-                <input type="checkbox" id="Tue" name="Tue" />
-                <label for="sun"> Turthday</label><br />
-                <input type="checkbox" id="Tue" name="Tue" />
-                <label for="Fri">Friday</label><br />
-              </form>
+                @for(int i = 0 ; i< Model.DaysChecked.Count;i++)
+                {           
+                    <input hidden asp-for="@Model.DaysChecked[i].Day" />
+                    <input asp-for="@Model.DaysChecked[i].Checked"/>
+                    <label asp-for="@Model.DaysChecked[i].Checked">@Model.DaysChecked[i].Day</label>
+                    <br />
+                }
+              <span asp-validation-for="DaysChecked" class="text-danger"></span>
             </div>
           </div>
         </div>
         <div class="form-actions">
-          <button type="button" class="btn btn-danger mr-1">
+          <a class="btn btn-danger mr-1">
             <i class="icon-trash"></i> Cancel
-          </button>
-          <button type="button" class="btn btn-success">
+          </a>
+          <button type="submit" class="btn btn-success">
             <i class="icon-note"></i> Save
           </button>
         </div>
@@ -76,3 +61,6 @@
     </div>
   </div>
 </div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

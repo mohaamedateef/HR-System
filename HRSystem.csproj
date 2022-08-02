@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="ActionFiltters\" />
-    <Folder Include="Attributes\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\WeeklyHoliday\" />
     <Folder Include="Views\Salary\" />
   </ItemGroup>

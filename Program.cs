@@ -1,21 +1,3 @@
-using HRSystem.Models;
-using HRSystem.Repositories.AttendanceRepo;
-using HRSystem.Repositories.DepartmentRepo;
-using HRSystem.Repositories.EmployeeRepo;
-using HRSystem.Repositories.ExceptionRepo;
-using HRSystem.Repositories.GeneralSettingRepo;
-using HRSystem.Repositories.HrRepo;
-using HRSystem.Repositories.SalaryRepo;
-using HRSystem.Repositories.WeeklyHolidayRepo;
-using HRSystem.Services.AttendanceServ;
-using HRSystem.Services.DepartmentServ;
-using HRSystem.Services.EmployeeServ;
-using HRSystem.Services.ExceptionServ;
-using HRSystem.Services.GeneralSettingServ;
-using HRSystem.Services.HrServ;
-using HRSystem.Services.SalaryServ;
-using HRSystem.Services.WeeklyHolidayServ;
-
 namespace HRSystem
 {
     public class Program
