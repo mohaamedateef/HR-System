@@ -23,3 +23,4 @@ global using System.ComponentModel.DataAnnotations.Schema;
 global using HRSystem.ViewModels;
 global using HRSystem.Attributes;
 global using HRSystem.Services.Account;
+global using Microsoft.AspNetCore.Mvc;

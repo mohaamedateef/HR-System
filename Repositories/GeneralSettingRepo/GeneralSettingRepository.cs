@@ -9,5 +9,29 @@ namespace HRSystem.Repositories.GeneralSettingRepo
         {
             this.context = context;
         }
+        public List<GeneralSetting> GetAll()
+        {
+            return context.GeneralSettings.ToList();
+        }
+        public GeneralSetting GetById(int id)
+        {
+            return context.GeneralSettings.FirstOrDefault(n => n.Id == id);
+        }
+        public void Insert(GeneralSetting NewGeneralSetting)
+        {
+            GeneralSetting DeafultSetting = GetById(1);
+            if (DeafultSetting == null)
+            {
+                NewGeneralSetting.Id = 1;
+                context.GeneralSettings.Add(NewGeneralSetting);
+            }
+            else
+            {
+                DeafultSetting.ValueOfDiscount = NewGeneralSetting.ValueOfDiscount;
+                DeafultSetting.ValueOfExtra = NewGeneralSetting.ValueOfExtra;
+                context.GeneralSettings.Update(DeafultSetting);
+            }
+            context.SaveChanges();
+        }
     }
 }
