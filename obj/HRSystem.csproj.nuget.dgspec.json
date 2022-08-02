@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mohamed Atef\\Desktop\\00\\HR-System\\HRSystem.csproj": {}
+    "C:\\Users\\Mohamed Atef\\Desktop\\eng\\HR-System\\HRSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mohamed Atef\\Desktop\\00\\HR-System\\HRSystem.csproj": {
+    "C:\\Users\\Mohamed Atef\\Desktop\\eng\\HR-System\\HRSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mohamed Atef\\Desktop\\00\\HR-System\\HRSystem.csproj",
+        "projectUniqueName": "C:\\Users\\Mohamed Atef\\Desktop\\eng\\HR-System\\HRSystem.csproj",
         "projectName": "HRSystem",
-        "projectPath": "C:\\Users\\Mohamed Atef\\Desktop\\00\\HR-System\\HRSystem.csproj",
+        "projectPath": "C:\\Users\\Mohamed Atef\\Desktop\\eng\\HR-System\\HRSystem.csproj",
         "packagesPath": "C:\\Users\\Mohamed Atef\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mohamed Atef\\Desktop\\00\\HR-System\\obj\\",
+        "outputPath": "C:\\Users\\Mohamed Atef\\Desktop\\eng\\HR-System\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
