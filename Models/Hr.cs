@@ -2,6 +2,6 @@
 {
     public class Hr : IdentityUser
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

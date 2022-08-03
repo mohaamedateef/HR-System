@@ -1,21 +1,3 @@
-using HRSystem.Models;
-using HRSystem.Repositories.AttendanceRepo;
-using HRSystem.Repositories.DepartmentRepo;
-using HRSystem.Repositories.EmployeeRepo;
-using HRSystem.Repositories.ExceptionRepo;
-using HRSystem.Repositories.GeneralSettingRepo;
-using HRSystem.Repositories.HrRepo;
-using HRSystem.Repositories.SalaryRepo;
-using HRSystem.Repositories.WeeklyHolidayRepo;
-using HRSystem.Services.AttendanceServ;
-using HRSystem.Services.DepartmentServ;
-using HRSystem.Services.EmployeeServ;
-using HRSystem.Services.ExceptionServ;
-using HRSystem.Services.GeneralSettingServ;
-using HRSystem.Services.HrServ;
-using HRSystem.Services.SalaryServ;
-using HRSystem.Services.WeeklyHolidayServ;
-
 namespace HRSystem
 {
     public class Program
@@ -26,7 +8,10 @@ namespace HRSystem
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            // comment
+                        builder.Services.Configure<SecurityStampValidatorOptions>(option =>
+            {
+                option.ValidationInterval = TimeSpan.Zero;
+            });
             //DBContext + Identity Dbcontext Injaction
             builder.Services.AddDbContext<HRDbContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("HrDB")));
@@ -52,6 +37,13 @@ namespace HRSystem
             builder.Services.AddScoped<IWeeklyHolidayService, WeeklyHolidayService>();
             builder.Services.AddScoped<IExceptionService, ExceptionService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+            builder.Services.AddScoped<IGroupService, GroupService>();
+            //this two services for authorization , please don't delete them
+            //**************
+            //builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            //builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            //**************
 
             var app = builder.Build();
 
