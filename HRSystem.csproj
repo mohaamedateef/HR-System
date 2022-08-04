@@ -10,6 +10,7 @@
     <Folder Include="ActionFiltters\" />
     <Folder Include="Views\WeeklyHoliday\" />
     <Folder Include="Views\Salary\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>

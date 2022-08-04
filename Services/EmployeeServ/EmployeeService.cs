@@ -104,7 +104,6 @@ namespace HRSystem.Services.EmployeeServ
             EmployeeRepo.Update(employee);
             
         }
-
-       
+        
     }
 }

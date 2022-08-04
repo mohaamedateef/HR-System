@@ -5,7 +5,7 @@ namespace HRSystem.ViewModels
     {
         public string? RoleId { get; set; }
         [Required]
-        [Remote("UniqueGroupName","Group",ErrorMessage ="This Group name already exist")]
+        [Remote("UniqueGroupName","Group",AdditionalFields = "RoleId", ErrorMessage ="This Group name already exist")]
         public string RoleName { get; set; }
         public List<CheckBoxViewModel> RoleCalims { get; set; }
     }

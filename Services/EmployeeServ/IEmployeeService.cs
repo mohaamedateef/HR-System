@@ -8,6 +8,5 @@ namespace HRSystem.Services.EmployeeServ
         EmployeeViewModel GetViewModel(int id);
         void  UpdateEmployeeWithViewModel(EmployeeViewModel addEmployeeViewModel);
        
-
     }
 }
