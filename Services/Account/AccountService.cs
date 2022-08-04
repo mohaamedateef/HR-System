@@ -57,15 +57,19 @@
             List<UserDataViewModel> usersModel = new List<UserDataViewModel>();
             foreach (Hr user in Users)
             {
-               
                 var roles = await userManager.GetRolesAsync(user);
                 if (roles.Count != 0)
                     GroupName = roles[0];
                 else
-                     GroupName = "";
+                    GroupName = "";
                 usersModel.Add(new UserDataViewModel { Id = user.Id, Name = user.Name, Email = user.Email, GroupName = GroupName }); 
             }
             return usersModel;
+        }
+        public List<UsersChatViewModel> GetAllUsersNames()
+        {
+            List<UsersChatViewModel> users = context.Users.Select(n => new UsersChatViewModel { Id = n.Id, Name = n.Name }).ToList();
+            return users;
         }
 
         public async Task<Hr> GetByEmail(string email)

@@ -1,3 +1,5 @@
+using HRSystem.HubChat;
+
 namespace HRSystem
 {
     public class Program
@@ -12,6 +14,7 @@ namespace HRSystem
             {
                 option.ValidationInterval = TimeSpan.Zero;
             });
+            builder.Services.AddSignalR();
             //DBContext + Identity Dbcontext Injaction
             builder.Services.AddDbContext<HRDbContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("HrDB")));
@@ -59,11 +62,10 @@ namespace HRSystem
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+            app.UseEndpoints(endpoints => endpoints.MapHub<ChatHub>("OnlineChat"));
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
             app.Run();
 
         }

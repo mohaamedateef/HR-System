@@ -1,6 +1,4 @@
-﻿using HRSystem.Models;
-
-namespace HRSystem.Repositories.AttendanceRepo
+﻿namespace HRSystem.Repositories.AttendanceRepo
 {
     public class AttendanceRepository : IAttendanceRepository
     {
@@ -9,5 +7,6 @@ namespace HRSystem.Repositories.AttendanceRepo
         {
             this.context = context;
         }
+        
     }
 }

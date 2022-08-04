@@ -11,6 +11,7 @@
         Hr GetById(string id);
         void Delete(string id);
         void Update(UserViewModel viewModel);
+        List<UsersChatViewModel> GetAllUsersNames();
 
     }
 }

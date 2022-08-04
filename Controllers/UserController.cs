@@ -96,6 +96,11 @@ namespace HRSystem.Controllers
             {
                 return View(viewModel);
             }
+            else if (viewModel.GroupName == null)
+            {
+                ModelState.AddModelError("GroupName", "Please select group");
+                return View(viewModel);
+            }
             else
             {
                 Hr user = await accountService.GetByEmail(viewModel.Email);
