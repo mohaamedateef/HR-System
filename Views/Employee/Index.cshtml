@@ -45,8 +45,8 @@
               <table  class="table table-hover ">
                 <thead class="bg-primary text-white">
                  <tr>
-                    <th>Name</th>
                     <th>Id</th>
+                    <th>Name</th>
                     <th>Phone</th>
                     <th>Date of birth</th>
                     <th>Gender</th>
@@ -63,8 +63,8 @@
 
 
                   <tr>
-                    <td>@item.Name</td>
                     <td>@item.Id</td>
+                    <td>@item.Name</td>
                     <td>@item.ContactNumber</td>
                     <td>@item.BirthDate.ToString("dd-MM-yyyy")</td>
                     <td>@item.Gender</td>
@@ -102,7 +102,7 @@
       
         for (var i of rows) 
         {
-            if (!i.children[0].innerHTML.toLowerCase().includes(name.toLowerCase())) 
+            if (!i.children[1].innerHTML.toLowerCase().includes(name.toLowerCase())) 
             {
                 i.style.display = "none";
 

@@ -13,8 +13,8 @@ namespace HRSystem.Controllers
         //[Authorize(Permissions.Employee.View)]
         public IActionResult Index()
         {
-            List<Employee> employee = employeeService.GetAllEmployee();
 
+            List<Employee> employee = employeeService.GetAllEmployee();
             return View(employee);
         }
         [HttpGet]
@@ -112,8 +112,6 @@ namespace HRSystem.Controllers
                         ModelState.AddModelError("Gender", "Gender is required");
                         ModelState.AddModelError("DeptId", "Department is required");
                         return View(employeeViewModel);
-
-
                     }
                     else
                     {

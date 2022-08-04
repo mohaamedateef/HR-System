@@ -8,6 +8,17 @@
         {
             this.groupRepository = groupRepository;
         }
+
+        public void Delete(IdentityRole Role)
+        {
+            groupRepository.Delete(Role);
+        }
+
+        public Task<IdentityRole> GetById(string RoleId)
+        {
+            return groupRepository.GetById(RoleId);
+        }
+
         public List<IdentityRole> GetRoles()
         {
             return groupRepository.GetRoles();
