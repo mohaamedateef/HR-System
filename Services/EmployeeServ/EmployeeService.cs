@@ -104,6 +104,10 @@ namespace HRSystem.Services.EmployeeServ
             EmployeeRepo.Update(employee);
             
         }
-        
+
+        public Employee GetEmployeeByNationalId(string Id)
+        {
+           return EmployeeRepo.GetEmployeeByNationalId(Id);
+        }
     }
 }
