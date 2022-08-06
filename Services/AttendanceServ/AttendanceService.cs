@@ -10,5 +10,6 @@ namespace HRSystem.Services.AttendanceServ
         {
             this.AttendanceRepo = AttendanceRepo;
         }
+    }
      
 }

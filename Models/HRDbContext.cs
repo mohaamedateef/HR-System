@@ -25,6 +25,7 @@
         public DbSet<Exception> Exceptions { get; set; }
         public DbSet<WeeklyHoliday> WeeklyHolidays { get; set; }
         public DbSet<GeneralSetting> GeneralSettings { get; set; }
+        public DbSet<UsersMessages> Messages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WeeklyHoliday>().HasKey(c => new { c.GeneralId, c.Day });

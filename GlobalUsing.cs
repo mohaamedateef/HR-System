@@ -13,6 +13,8 @@ global using HRSystem.Services.AttendanceServ;
 global using HRSystem.Services.DepartmentServ;
 global using HRSystem.Services.EmployeeServ;
 global using HRSystem.Services.ExceptionServ;
+global using HRSystem.Services.ChatServ;
+global using HRSystem.Repositories.ChatRepo;
 global using HRSystem.Services.GeneralSettingServ;
 global using HRSystem.Services.HrServ;
 global using HRSystem.Services.SalaryServ;

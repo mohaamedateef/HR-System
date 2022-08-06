@@ -10,7 +10,7 @@ namespace HRSystem.Controllers
         {
             this.employeeService = employeeService;
         }
-        //[Authorize(Permissions.Employee.View)]
+        [Authorize(Permissions.Employee.View)]
         public IActionResult Index()
         {
 

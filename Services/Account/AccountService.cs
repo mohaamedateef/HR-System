@@ -68,7 +68,7 @@
         }
         public List<UsersChatViewModel> GetAllUsersNames()
         {
-            List<UsersChatViewModel> users = context.Users.Select(n => new UsersChatViewModel { Id = n.Id, Name = n.Name }).ToList();
+            List<UsersChatViewModel> users = context.Users.Select(n => new UsersChatViewModel { Id = n.Id, Name = n.Name,UserName=n.UserName }).ToList();
             return users;
         }
 

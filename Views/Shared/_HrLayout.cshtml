@@ -28,7 +28,6 @@
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/prism.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/chartist.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/app.css">
-    <link rel="stylesheet" type="text/css" href="~/app-assets/css/chat.css">
   
 
   </head>
@@ -84,7 +83,7 @@
              </ul>
           </div>
        </div>
-        <div class="sidebar-background"></div>
+        <div class="sidebar-background" style="background-image:url(../img/sidebar-bg/04.jpg)"></div>
       </div>
 
 
@@ -401,7 +400,7 @@
      <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.7/signalr.min.js" integrity="sha512-Aijk+ipiP35gqQx1jTDzb7U4PceIAXjqSuCchQ+Wb4GTM7gAKK9f9K5aJxLxCbEIpmHB/zeYBOX/D9UqswZ6vQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.7/signalr.min.js" integrity="sha512-Aijk+ipiP35gqQx1jTDzb7U4PceIAXjqSuCchQ+Wb4GTM7gAKK9f9K5aJxLxCbEIpmHB/zeYBOX/D9UqswZ6vQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
   </body>
 </html>

@@ -42,7 +42,9 @@ namespace HRSystem
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IGroupRepository, GroupRepository>();
             builder.Services.AddScoped<IGroupService, GroupService>();
-            //this two services for authorization , please don't delete them
+            builder.Services.AddScoped<IChatRepository, ChatRepository>();
+            builder.Services.AddScoped<IChatService, ChatService>();
+            //this two services for authorization , please don't delete it
             //**************
             //builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             //builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
@@ -56,11 +58,8 @@ namespace HRSystem
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-
-            app.UseRouting();
-
             app.UseAuthentication();
-
+            app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapHub<ChatHub>("OnlineChat"));
             app.MapControllerRoute(
