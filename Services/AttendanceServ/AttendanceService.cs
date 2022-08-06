@@ -179,5 +179,13 @@ namespace HRSystem.Services.AttendanceServ
             Attendance.End = UpdatedAttendance.End;
             UpdateAttendance(Attendance, Id);
         }
+        public List<string> GetExtensions()
+        {
+            return new List<string> { ".xlsx" , ".xls"};
+        }
+        public List<EmployeeAttendanceViewModel> Search(SearchAttendanceViewModel viewModel)
+        {
+            return AttendanceRepo.Search(viewModel);
+        }
     }
 }
