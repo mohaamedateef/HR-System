@@ -1,12 +1,12 @@
 ﻿namespace HRSystem.Services.Account
 {
-    public class AccountService:IAccountService
+    public class AccountService : IAccountService
     {
         private readonly UserManager<Hr> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly HRDbContext context;
 
-        public AccountService(UserManager<Hr> userManager,RoleManager<IdentityRole> roleManager,HRDbContext context)
+        public AccountService(UserManager<Hr> userManager, RoleManager<IdentityRole> roleManager, HRDbContext context)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
@@ -25,9 +25,9 @@
         {
             Hr user = new Hr
             {
-                Name=userViewModel.Name,
+                Name = userViewModel.Name,
                 UserName = userViewModel.Email,
-               Email = userViewModel.Email
+                Email = userViewModel.Email
             };
             return await userManager.CreateAsync(user, userViewModel.PassWord);
         }
@@ -35,7 +35,7 @@
         public async Task<bool> CheckPassword(Hr hr, string password)
         {
 
-            return await userManager.CheckPasswordAsync(hr,password);
+            return await userManager.CheckPasswordAsync(hr, password);
         }
 
         public async Task<IdentityResult> Create(RegisterViewModel registerView)
@@ -47,7 +47,7 @@
                 Email = registerView.Email,
                 PhoneNumber = registerView.PhoneNumber,
             };
-            return await userManager.CreateAsync(user,registerView.Password);
+            return await userManager.CreateAsync(user, registerView.Password);
         }
 
         public async Task<List<UserDataViewModel>> GetAllUsers()
@@ -57,20 +57,24 @@
             List<UserDataViewModel> usersModel = new List<UserDataViewModel>();
             foreach (Hr user in Users)
             {
-               
                 var roles = await userManager.GetRolesAsync(user);
                 if (roles.Count != 0)
                     GroupName = roles[0];
                 else
-                     GroupName = "";
-                usersModel.Add(new UserDataViewModel { Id = user.Id, Name = user.Name, Email = user.Email, GroupName = GroupName }); 
+                    GroupName = "";
+                usersModel.Add(new UserDataViewModel { Id = user.Id, Name = user.Name, Email = user.Email, GroupName = GroupName });
             }
             return usersModel;
+        }
+        public List<UsersChatViewModel> GetAllUsersNames()
+        {
+            List<UsersChatViewModel> users = context.Users.Select(n => new UsersChatViewModel { Id = n.Id, Name = n.Name, UserName = n.UserName }).ToList();
+            return users;
         }
 
         public async Task<Hr> GetByEmail(string email)
         {
-            Hr user=await userManager.FindByEmailAsync(email);
+            Hr user = await userManager.FindByEmailAsync(email);
             return user;
         }
 
@@ -78,7 +82,7 @@
         {
             return context.Users.FirstOrDefault(n => n.PhoneNumber == Phone);
         }
-        public void  Update(UserViewModel viewModel)
+        public void Update(UserViewModel viewModel)
         {
             Hr oldUser = context.Users.FirstOrDefault(n => n.Id == viewModel.Id);
             oldUser.Name = viewModel.Name;
@@ -89,7 +93,7 @@
             //await userManager.RemoveFromRolesAsync(oldUser, userRoles);
             //string GroupName  =  userManager.GetRolesAsync(oldUser).Result[0];
             //await userManager.RemoveFromRoleAsync(oldUser, GroupName);
-            
+
         }
     }
 }

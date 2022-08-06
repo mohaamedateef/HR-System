@@ -57,7 +57,7 @@ namespace HRSystem.Services.EmployeeServ
                 NetSalary = employeeViewModel.NetSalary,
                 Start = employeeViewModel.Start
             };
-            EmployeeRepo.Update(employee);            
+            EmployeeRepo.Insert(employee);            
         }
         public EmployeeViewModel GetViewModel(int id)
         {

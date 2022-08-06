@@ -18,6 +18,9 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="~/app-assets/fonts/feather/style.min.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/fonts/simple-line-icons/style.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/fonts/font-awesome/css/font-awesome.min.css">
@@ -59,29 +62,28 @@
                 <li class=" nav-item"><a asp-action="AddNewGroup" asp-controller="Group"><i class="icon-note"></i><span data-i18n="" class="menu-title">
                    Add Group</span></a>
                 </li>
+                <li class=" nav-item"><a asp-action="Index" asp-controller="User"><i class="icon-users"></i><span data-i18n="" class="menu-title">Users</span></a>
+                </li>
                 <li class=" nav-item"><a asp-action="AddNewUser" asp-controller="User"><i class="icon-pin"></i><span data-i18n="" class="menu-title">
                    Add User</span></a>
                 </li>
                 <li class=" nav-item"><a href="/GeneralSetting/Index"><i class="icon-pie-chart"></i><span data-i18n="" class="menu-title">
                    General Settings</span></a>
                 </li>
-                <li class=" nav-item"><a asp-action="Index" asp-controller="Attendance"><i class="icon-support"></i><span data-i18n="" class="menu-title">
+                <li class=" nav-item"><a href="attendance_ departure.html"><i class="icon-support"></i><span data-i18n="" class="menu-title">
                    Attendance</span></a>
                 </li>
                 <li class=" nav-item"><a href="salary_report.html"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Salary report</span></a>
                 </li>
-                <li class=" nav-item"><a asp-action="Index" asp-controller="User"><i class="icon-users"></i><span data-i18n="" class="menu-title">Users</span></a>
-                </li>
-
-                <li class=" nav-item"><a href="chat.html"><i class="icon-puzzle"></i><span data-i18n="" class="menu-title">Chat</span></a>
+                <li class=" nav-item"><a href="/Chat/Index"><i class="icon-puzzle"></i><span data-i18n="" class="menu-title">Chat</span></a>
                 </li>
                
                 <li class=" nav-item"><a href="login.html"><i class="icon-pin"></i><span data-i18n="" class="menu-title">Login Page </span></a>
-                 </li>
+                 </li
              </ul>
           </div>
        </div>
-        <div class="sidebar-background"></div>
+        <div class="sidebar-background" style="background-image:url(../img/sidebar-bg/04.jpg)"></div>
       </div>
 
 
@@ -398,6 +400,7 @@
      <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.7/signalr.min.js" integrity="sha512-Aijk+ipiP35gqQx1jTDzb7U4PceIAXjqSuCchQ+Wb4GTM7gAKK9f9K5aJxLxCbEIpmHB/zeYBOX/D9UqswZ6vQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
   </body>
 </html>
