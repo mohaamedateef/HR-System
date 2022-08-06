@@ -9,5 +9,9 @@ namespace HRSystem.Services.DepartmentServ
         {
             this.DepartmentRepo = DepartmentRepo;
         }
+        public List<Department> GetAll()
+        {
+            return DepartmentRepo.GetAll();
+        }
     }
 }

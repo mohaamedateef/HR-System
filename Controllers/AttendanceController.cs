@@ -7,15 +7,19 @@ namespace HRSystem.Controllers
     public class AttendanceController : Controller
     {
         private readonly IAttendanceService AttendanceService;
-        public AttendanceController(IAttendanceService AttendanceService)
+        private readonly IDepartmentService DepartmentService;
+
+        public AttendanceController(IAttendanceService AttendanceService, IDepartmentService DepartmentService)
         {
             this.AttendanceService = AttendanceService;
+            this.DepartmentService = DepartmentService;
         }
         [HttpGet]
         public IActionResult Index(string Errors)
         {
-            ViewBag.Errors = Errors;
             var EmployeeAttendances = AttendanceService.GetEmployeeAttendances();
+            ViewBag.Errors = Errors;
+            ViewBag.Departments = DepartmentService.GetAll();
             return View(EmployeeAttendances);
         }
         [HttpPost]
@@ -45,6 +49,41 @@ namespace HRSystem.Controllers
                 txt += "have invalid data please check again.";
             }
             return RedirectToAction("Index", new { Errors = txt});
+        }
+        [HttpGet]
+        public IActionResult DeleteAttendance([FromRoute] int Id)
+        {
+            AttendanceService.DeleteAttendance(Id);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+            Attendance NewAttendacnce = AttendanceService.GetById(Id);
+            AttendanceEditViewModel attendance = new AttendanceEditViewModel { Id=Id, Start = NewAttendacnce.Start, End= NewAttendacnce.End, Date=NewAttendacnce.Date, EmployeeName= NewAttendacnce.Employee.Name};
+            return View(attendance);
+        }
+        [HttpPost]
+        public IActionResult Edit(AttendanceEditViewModel attendance)
+        {
+            AttendanceService.UpdateAttendanceViewModel(attendance,attendance.Id);
+            return RedirectToAction("Index");
+        }
+        public IActionResult CheckStart(TimeSpan Start, TimeSpan End)
+        {
+            if (Start > End)
+            {
+                return Json(false);
+            }
+            return Json(true);
+        }
+        public IActionResult CheckEnd(TimeSpan End, TimeSpan Start)
+        {
+            if (End > Start)
+            {
+                return Json(true);
+            }
+            return Json(false);
         }
     }
 }
