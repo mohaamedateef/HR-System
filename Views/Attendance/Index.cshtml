@@ -1,38 +1,46 @@
-﻿@model List<EmployeeAttendanceViewModel>
+﻿@model SearchAttendanceViewModel
 @{
     ViewData["Title"] = "Index";
-    SelectList Departments = new SelectList(ViewBag.Departments,"Id","Name");
 }
+                <form asp-action="Search" method="post">
 <input hidden value="@ViewBag.Errors" id="errors"/>
 <div class="card">
     <div class="card-header">
-        <div class="card-title-wrap bar-success">
-            <h4 class="card-title">Attendance and departure request</h4>
+        <div class="card-title-wrap bar-success d-flex align-items-center justify-content-between">
+            <h4 class="card-title col-7">Attendance and departure request</h4>
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" placeholder="Enter employee name or department">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
         </div>
     </div>
     <div class="card-body collapse show">
         <div class="card-block card-dashboard">
                 <div class="row">
-                    <div class="col-md-12 d-flex align-items-center mb-2">
-                       <input type="text" id="search" class="form-control col-8" placeholder="Enter employee name or department">
-                    </div>
-                    <div class="col-md-8 d-flex align-items-center mb-2">
+                    
+                    <div class="col-md-8 mb-4 d-flex align-items-center">
                        <label class="label-control ms-2">From:</label>
-                       <input type="date" name="search-start" class="form-control col-5"/>
+                       <input asp-for="StartDate" class="form-control col-5"/>
+                       <span class="text-danger" asp-validation-for="StartDate"></span>
                        <label class="label-control">To:</label>
-                       <input type="date" name="search-end" class="form-control col-5"/>
-                    </div>
-                    <div class="col-md-8">
-                       <button class="btn btn-primary ms-2">Search</button>
-                    </div>
+                       <input asp-for="EndDate" class="form-control col-5"/>
+                       <div class="col-1">
+                            <button type="submit" class="m-0 btn btn-primary ms-2">Search</button>
+                        </div>                    
+                   </div>
+                   </form>
+                    
                     <div class="col-sm-12 col-md-6">
                         <form asp-action="AddFile" method="post" enctype="multipart/form-data">
-                            <div class="d-flex">
-                                <input type="file" name="file" id="import_file" class="form-control mb-2">
-                                <button type="submit" class="btn btn-primary ms-2">Import</button>
-                                <button type="button" class="btn btn-warning ms-2">Export</button>
+                            <div class="d-flex ms-5">
+                                <input type="file" name="file" id="import_file" class="form-control mb-1 me-2">
+                                <button onclick="checkValidation()" type="submit" class="btn btn-primary ps-1 me-2 ms-2">Import</button>
+                                <button type="button" class="btn btn-warning ms-2 me-2">Export</button>
                             </div>
-
+                            <span style="display:none;" id="filevalidation" class="text-danger ms-5" >Please choose file with this formats(.xls,.xlsx)</span>
+                            @if(ViewBag.status==1){
+                            <span  class="text-danger ms-5" >Please choose file with this formats(.xls,.xlsx)</span>
+                            }
                         </form>
                     </div>                              
                 </div> 
@@ -50,7 +58,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach (var Attendance in Model)
+                    @foreach (var Attendance in ViewBag.EmployeeAttendances)
                     {
                         <tr>
                             <td>@Attendance.AttendanceId</td>
@@ -157,6 +165,9 @@
 
 </div>
 @section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    
     <script>
         var errors = $("#errors").val();
         console.log(errors);
@@ -168,5 +179,18 @@
                 event.preventDefault();
             }
         }
+function checkValidation() {
+        var import_file = document.getElementById("import_file");
+        var span = document.getElementById("filevalidation");
+      
+    if (import_file.value == '') {
+        event.preventDefault();
+        span.style.display = 'inline'
+    }
+    else {
+        span.style.display = 'none'
+
+    }
+}
     </script>
 }

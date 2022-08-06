@@ -8,5 +8,6 @@
         void UpdateAttendance(Attendance UpdatedAttendance,int Id);
         Attendance GetById(int Id);
         void DeleteAttendance(int id);
+        List<EmployeeAttendanceViewModel> Search(SearchAttendanceViewModel viewModel);
     }
 }

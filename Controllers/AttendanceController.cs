@@ -15,17 +15,25 @@ namespace HRSystem.Controllers
             this.DepartmentService = DepartmentService;
         }
         [HttpGet]
-        public IActionResult Index(string Errors)
+        public IActionResult Index(string Errors,int status)
         {
-            var EmployeeAttendances = AttendanceService.GetEmployeeAttendances();
             ViewBag.Errors = Errors;
-            ViewBag.Departments = DepartmentService.GetAll();
-            return View(EmployeeAttendances);
+            ViewBag.status = status;
+            ViewBag.EmployeeAttendances = AttendanceService.GetEmployeeAttendances();
+            return View();
         }
         [HttpPost]
         public IActionResult AddFile(IFormFile File, [FromServices] IHostingEnvironment HostingEnviroment)
         {
+            if(File==null)
+                return RedirectToAction("Index");
             string FileName = $"{HostingEnviroment.WebRootPath}\\files\\{File.FileName}";
+            FileInfo file = new FileInfo(FileName);
+            if (!AttendanceService.GetExtensions().Any(e => e == file.Extension))
+            {
+                ModelState.AddModelError("invalidextension","Invalid File Extension");
+                return RedirectToAction("Index",new {status = 1});
+            }
             using (FileStream FileStream = System.IO.File.Create(FileName))
             {
                 File.CopyTo(FileStream);
@@ -49,6 +57,22 @@ namespace HRSystem.Controllers
                 txt += "have invalid data please check again.";
             }
             return RedirectToAction("Index", new { Errors = txt});
+        }
+        [HttpPost]
+        public IActionResult Search(SearchAttendanceViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                foreach(var item in ModelState.Root.Children)
+                {
+                    var x = item.ValidationState;
+                }
+                
+                ViewBag.EmployeeAttendances = new List<EmployeeAttendanceViewModel>();
+                return View("Index", viewModel);
+            }
+            ViewBag.EmployeeAttendances = AttendanceService.Search(viewModel);
+            return View("Index");
         }
         [HttpGet]
         public IActionResult DeleteAttendance([FromRoute] int Id)
@@ -80,6 +104,14 @@ namespace HRSystem.Controllers
         public IActionResult CheckEnd(TimeSpan End, TimeSpan Start)
         {
             if (End > Start)
+            {
+                return Json(true);
+            }
+            return Json(false);
+        }
+        public IActionResult CheckSearchDate(DateTime StartDate, DateTime EndDate)
+        {
+            if (EndDate > StartDate)
             {
                 return Json(true);
             }

@@ -38,5 +38,33 @@ namespace HRSystem.Repositories.AttendanceRepo
             context.Attendances.Remove(GetById(id));
             context.SaveChanges();
         }
+        public List<EmployeeAttendanceViewModel> Search(SearchAttendanceViewModel viewModel)
+        {
+            List<Attendance> attendancesbyEmployee = context.Attendances.Include(n => n.Employee).Where(
+                n => (n.Date >= viewModel.StartDate) ||
+                   (n.Date <= viewModel.EndDate) &&
+                   (n.Employee.Name.ToLower().Contains(viewModel.Name.ToLower()))).ToList();
+            if (attendancesbyEmployee != null)
+                return MappingAttendanceToEmpAttedVM(attendancesbyEmployee);
+            List<Attendance> attendancesByDept = context.Attendances.Include(n => n.Employee).ThenInclude(n=>n.Department).Where(
+                n => (n.Date >= viewModel.StartDate) ||
+                   (n.Date <= viewModel.EndDate) &&
+                   (n.Employee.Department.Name.ToLower().Contains(viewModel.Name.ToLower()))).ToList();
+                return MappingAttendanceToEmpAttedVM(attendancesByDept);
+        }
+        public List<EmployeeAttendanceViewModel> MappingAttendanceToEmpAttedVM(List<Attendance> attendances)
+        {
+            List<EmployeeAttendanceViewModel> employeeAttendanceViewModels = new List<EmployeeAttendanceViewModel>();
+            foreach (Attendance attendance  in attendances)
+            {
+                employeeAttendanceViewModels.Add(new EmployeeAttendanceViewModel { 
+                    AttendanceId = attendance.Id,
+                    CheckInTime = attendance.Start,
+                    CheckOutTime = attendance.End,
+                    EmployeeName = attendance.Employee.Name
+                });
+            }
+            return employeeAttendanceViewModels;
+        }
     }
 }
