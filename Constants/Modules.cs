@@ -3,11 +3,11 @@
     public enum Modules
     {
         employee,
-        progress,
+        chat,
         generalSetting,
         permissions,
         group,
         attendance,
-        salaryReport
+        salaryReport,
     }
 }

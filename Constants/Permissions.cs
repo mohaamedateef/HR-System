@@ -41,12 +41,12 @@
             public const string Edit = "Permissions.group.Edit";
             public const string Delete = "Permissions.group.Delete";
         }
-        public static class progress
+        public static class chat
         {
-            public const string View = "Permissions.progress.View";
-            public const string Create = "Permissions.progress.Create";
-            public const string Edit = "Permissions.progress.Edit";
-            public const string Delete = "Permissions.progress.Delete";
+            public const string View = "Permissions.chat.View";
+            public const string Create = "Permissions.chat.Create";
+            public const string Edit = "Permissions.chat.Edit";
+            public const string Delete = "Permissions.chat.Delete";
         }
         public static class generalSetting
         {

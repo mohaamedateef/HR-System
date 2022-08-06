@@ -3,6 +3,7 @@
 namespace HRSystem.Controllers
 {
     //[Authorize(Roles = "Super Admin")]
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly IAccountService accountService;
@@ -15,7 +16,7 @@ namespace HRSystem.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction(nameof(Login));
         }
         [HttpGet]
         public IActionResult Register()
@@ -24,7 +25,6 @@ namespace HRSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
         public async Task< IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid)
@@ -52,14 +52,12 @@ namespace HRSystem.Controllers
             return View(registerViewModel);
         }
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Login()
         {   
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             if (ModelState.IsValid)
