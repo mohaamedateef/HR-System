@@ -13,8 +13,6 @@ global using HRSystem.Services.AttendanceServ;
 global using HRSystem.Services.DepartmentServ;
 global using HRSystem.Services.EmployeeServ;
 global using HRSystem.Services.ExceptionServ;
-global using HRSystem.Services.ChatServ;
-global using HRSystem.Repositories.ChatRepo;
 global using HRSystem.Services.GeneralSettingServ;
 global using HRSystem.Services.HrServ;
 global using HRSystem.Services.SalaryServ;
@@ -35,6 +33,4 @@ global using System.Linq;
 global using System.Threading.Tasks;
 global using Microsoft.Extensions.Options;
 global using System;
-global using Microsoft.AspNetCore.SignalR;
-
-
+global using ExcelDataReader;

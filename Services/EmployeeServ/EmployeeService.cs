@@ -11,15 +11,15 @@ namespace HRSystem.Services.EmployeeServ
         }
         public List<Employee> GetAllEmployee()
         {
-           return EmployeeRepo.GetAllEmployee();
+            return EmployeeRepo.GetAllEmployee();
         }
 
         public Employee GetEmployeeById(int id)
         {
-            return  EmployeeRepo.GetEmployeeById(id);
+            return EmployeeRepo.GetEmployeeById(id);
         }
 
-        public  List<Employee> GetEmployeeByName(string name)
+        public List<Employee> GetEmployeeByName(string name)
         {
             return EmployeeRepo.GetEmployeeByName(name);
         }
@@ -57,7 +57,7 @@ namespace HRSystem.Services.EmployeeServ
                 NetSalary = employeeViewModel.NetSalary,
                 Start = employeeViewModel.Start
             };
-            EmployeeRepo.Update(employee);            
+            EmployeeRepo.Update(employee);
         }
         public EmployeeViewModel GetViewModel(int id)
         {
@@ -86,24 +86,28 @@ namespace HRSystem.Services.EmployeeServ
         {
             Employee employee = new Employee()
             {
-                Id= (int)EmployeeViewModel.Id,
+                Id = (int)EmployeeViewModel.Id,
                 Name = EmployeeViewModel.Name,
                 Address = EmployeeViewModel.Address,
-                BirthDate= EmployeeViewModel.BirthDate,
-                ContractDate= EmployeeViewModel.ContractDate,
-                ContactNumber= EmployeeViewModel.ContactNumber,
-                DeptId=EmployeeViewModel.DeptId,
-                Email=EmployeeViewModel.Email,
-                Start=EmployeeViewModel.Start,
-                End=EmployeeViewModel.End,
-                Gender=EmployeeViewModel.Gender,
-                NationalId=EmployeeViewModel.NationalId,
-                Nationality=EmployeeViewModel.Nationality,
-                NetSalary=EmployeeViewModel.NetSalary
+                BirthDate = EmployeeViewModel.BirthDate,
+                ContractDate = EmployeeViewModel.ContractDate,
+                ContactNumber = EmployeeViewModel.ContactNumber,
+                DeptId = EmployeeViewModel.DeptId,
+                Email = EmployeeViewModel.Email,
+                Start = EmployeeViewModel.Start,
+                End = EmployeeViewModel.End,
+                Gender = EmployeeViewModel.Gender,
+                NationalId = EmployeeViewModel.NationalId,
+                Nationality = EmployeeViewModel.Nationality,
+                NetSalary = EmployeeViewModel.NetSalary
             };
             EmployeeRepo.Update(employee);
-            
+
         }
-        
+
+        public Employee GetEmployeeByNationalId(string Id)
+        {
+            return EmployeeRepo.GetEmployeeByNationalId(Id);
+        }
     }
 }

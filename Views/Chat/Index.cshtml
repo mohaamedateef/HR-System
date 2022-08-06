@@ -66,29 +66,29 @@ Hr system
 </p>
 </div>
 <div class="list px-1 py-3">
-<a class="item p-2 ps-3 align-items-center d-flex mb-3">
+<a asp-action="Index" asp-controller="Home"  class="item p-2 ps-3 align-items-center d-flex mb-3">
 <i class="fa-solid fa-house"></i>
 <p class="ms-3">Dashboard</p>
 </a>
-<a
-[routerLink]="['employee']"
+<a 
+asp-action="Index" asp-controller="Employee"
 class="item p-2 ps-3 align-items-center d-flex mb-3"
 >
 <i class="fa-solid fa-users"></i>
 <p class="ms-3">Employee</p>
 </a>
 <a
-[routerLink]="['/addEmployee']"
+asp-action="Add" asp-controller="Employee"
 class="item p-2 ps-3 align-items-center d-flex mb-3"
 >
 <i class="fa-solid fa-pen-to-square"></i>
 <p class="ms-3">Add Employee</p>
 </a>
-<a class="item p-2 ps-3 align-items-center d-flex mb-3">
+<a asp-action="Index" asp-controller="GeneralSetting" class="item p-2 ps-3 align-items-center d-flex mb-3">
 <i class="fa fa-gear"></i>
 <p class="ms-3">General Settings</p>
 </a>
-<a class="item p-2 ps-3 align-items-center d-flex mb-3">
+<a asp-action="Index" asp-controller="Attendance" class="item p-2 ps-3 align-items-center d-flex mb-3">
 <i class="fa-solid fa-clipboard-user"></i>
 <p class="ms-3">Attendence</p>
 </a>
@@ -96,15 +96,15 @@ class="item p-2 ps-3 align-items-center d-flex mb-3"
 <i class="fas fa-file-signature"></i>
 <p class="ms-3">Salary report</p>
 </a>
-<a class="item p-2 ps-3 align-items-center d-flex mb-3">
+<a asp-action="Index" asp-controller="User" class="item p-2 ps-3 align-items-center d-flex mb-3">
 <i class="fa-solid fa-user-group"></i>
 <p class="ms-3">Users</p>
 </a>
-<a class="item p-2 ps-3 align-items-center d-flex mb-3">
+<a asp-action="Index" asp-controller="Group" class="item p-2 ps-3 align-items-center d-flex mb-3">
 <i class="fa fa-gear"></i>
 <p class="ms-3">Permissions</p>
 </a>
-<a class="item p-2 ps-3 align-items-center d-flex mb-3">
+<a asp-action="Index" asp-controller="Chat" class="item p-2 ps-3 align-items-center d-flex mb-3">
 <i class="far fa-comments"></i>
 <p class="ms-3">Chat</p>
 </a>
@@ -152,7 +152,7 @@ class="d-flex align-items-center justify-content-between"
 <i class="fas fa-ellipsis-v fs-4"></i>
 </div>
 </div>
-<div id="messagesContainer" class="messages-container position-relative px-4">
+<div id="messagesContainer" class="messages-container scroll position-relative px-4">
 <div class="d-flex justify-content-center">
 <p
 class="fixed chat-history py-1 px-3 rounded text-white bg-black fw-bold"

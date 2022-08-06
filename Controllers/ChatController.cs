@@ -16,7 +16,10 @@ namespace HRSystem.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            if (User.Identity.Name == null)
+                return RedirectToAction("Login", "Account");
             Hr user = await userManager.FindByNameAsync(User.Identity.Name);
+            
             ViewBag.Id = user.Id;
             return View(accountService.GetAllUsersNames().Where(n=>n.UserName!=User.Identity.Name).ToList());
         }

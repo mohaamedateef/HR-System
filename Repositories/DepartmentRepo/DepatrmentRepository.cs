@@ -9,5 +9,9 @@ namespace HRSystem.Repositories.DepartmentRepo
         {
             this.context = context;
         }
+        public List<Department> GetAll()
+        {
+            return context.Departments.ToList();
+        }
     }
 }

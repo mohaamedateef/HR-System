@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+bod::-webkit-scrollbar {
+    display: none;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: outset 0 0 0 rgba(0, 100, 0, 0.3);
+}  
+
 * {
     box-sizing: border-box;
 }
