@@ -7,5 +7,6 @@ namespace HRSystem.Services.AttendanceServ
         List<EmployeeAttendanceViewModel> GetEmployeeAttendances();
         List<AttendanceExcelViewModel> ReadDataFromExcelSheet(string FileName);
         List<int> AddAttendanceToDatabase(List<AttendanceExcelViewModel> AttendanceData);
+        void UpdateAttendanceViewModel(AttendanceEditViewModel UpdatedAttendance, int Id);
     }
 }

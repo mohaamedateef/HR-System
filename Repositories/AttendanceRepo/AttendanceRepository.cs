@@ -15,7 +15,7 @@ namespace HRSystem.Repositories.AttendanceRepo
         }
         public Attendance GetById(int Id)
         {
-            return context.Attendances.FirstOrDefault(a => a.Id == Id);
+            return context.Attendances.Include(a => a.Employee).FirstOrDefault(a => a.Id == Id);
         }
         public void AddAttendance(Attendance NewAttendance)
         {
@@ -32,6 +32,11 @@ namespace HRSystem.Repositories.AttendanceRepo
         {
             int? SerachAttendanceId = context.Attendances.Where(a => a.EmpId == id && a.Date == Date).Select(a=>a.Id).FirstOrDefault();
             return SerachAttendanceId;
+        }
+        public void DeleteAttendance(int id)
+        {
+            context.Attendances.Remove(GetById(id));
+            context.SaveChanges();
         }
     }
 }

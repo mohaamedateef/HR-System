@@ -168,5 +168,16 @@ namespace HRSystem.Services.AttendanceServ
         {
             return AttendanceRepo.GetById(Id);
         }
+        public void DeleteAttendance(int id)
+        {
+            AttendanceRepo.DeleteAttendance(id);
+        }
+        public void UpdateAttendanceViewModel(AttendanceEditViewModel UpdatedAttendance, int Id)
+        {
+            Attendance Attendance = GetById(Id);
+            Attendance.Start = UpdatedAttendance.Start;
+            Attendance.End = UpdatedAttendance.End;
+            UpdateAttendance(Attendance, Id);
+        }
     }
 }
