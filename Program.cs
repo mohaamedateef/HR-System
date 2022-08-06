@@ -1,3 +1,4 @@
+
 namespace HRSystem
 {
     public class Program
@@ -15,6 +16,7 @@ namespace HRSystem
             //DBContext + Identity Dbcontext Injaction
             builder.Services.AddDbContext<HRDbContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("HrDB")));
+            builder.Services.AddSignalR();
             builder.Services.AddIdentity<Hr, IdentityRole>(opt =>
             {
                 opt.Password.RequireNonAlphanumeric = false;
@@ -39,6 +41,8 @@ namespace HRSystem
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IGroupRepository, GroupRepository>();
             builder.Services.AddScoped<IGroupService, GroupService>();
+            builder.Services.AddScoped<IChatRepository, ChatRepository>();
+            builder.Services.AddScoped<IChatService, ChatService>();
             //this two services for authorization , please don't delete them
             //**************
             //builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
@@ -53,17 +57,13 @@ namespace HRSystem
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-
-            app.UseRouting();
-
             app.UseAuthentication();
-
+            app.UseRouting();
             app.UseAuthorization();
-
+            app.UseEndpoints(endpoints => endpoints.MapHub<ChatHub>("OnlineChat"));
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
             app.Run();
 
         }
