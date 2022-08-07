@@ -70,8 +70,14 @@
                 <li class=" nav-item"><a href="/GeneralSetting/Index"><i class="icon-pie-chart"></i><span data-i18n="" class="menu-title">
                    General Settings</span></a>
                 </li>
-                <li class=" nav-item"><a href="/Attendance/Index"><i class="icon-support"></i><span data-i18n="" class="menu-title">
-                   Attendance</span></a>
+                <li class="has-sub nav-item">
+                   <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title"> Attendace</span></a>
+                   <ul class="menu-content">
+                      <li><a asp-action="Index" asp-controller="Attendance" class="menu-item"> <i class="icon-bar"></i> Attendance</a>
+                      </li>
+                      <li><a asp-action="Index" asp-controller="Exception" class="menu-item">Add Exception</a>
+                      </li>
+                   </ul>
                 </li>
                 <li class=" nav-item"><a href="salary_report.html"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Salary report</span></a>
                 </li>

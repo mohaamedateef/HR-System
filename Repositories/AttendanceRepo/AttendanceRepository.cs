@@ -11,7 +11,7 @@ namespace HRSystem.Repositories.AttendanceRepo
         }
         public List<Attendance> GetAll()
         {
-            return context.Attendances.Include(n => n.Employee).ToList();
+            return context.Attendances.Include(n => n.Employee).ThenInclude(n=>n.Department).ToList();
         }
         public Attendance GetById(int Id)
         {
@@ -40,17 +40,59 @@ namespace HRSystem.Repositories.AttendanceRepo
         }
         public List<EmployeeAttendanceViewModel> Search(SearchAttendanceViewModel viewModel)
         {
-            List<Attendance> attendancesbyEmployee = context.Attendances.Include(n => n.Employee).Where(
-                n => (n.Date >= viewModel.StartDate) ||
-                   (n.Date <= viewModel.EndDate) &&
-                   (n.Employee.Name.ToLower().Contains(viewModel.Name.ToLower()))).ToList();
-            if (attendancesbyEmployee != null)
-                return MappingAttendanceToEmpAttedVM(attendancesbyEmployee);
-            List<Attendance> attendancesByDept = context.Attendances.Include(n => n.Employee).ThenInclude(n=>n.Department).Where(
-                n => (n.Date >= viewModel.StartDate) ||
-                   (n.Date <= viewModel.EndDate) &&
-                   (n.Employee.Department.Name.ToLower().Contains(viewModel.Name.ToLower()))).ToList();
-                return MappingAttendanceToEmpAttedVM(attendancesByDept);
+        
+
+            List<Attendance> attendances = context.Attendances.Include(e => e.Employee).ThenInclude(d=>d.Department).ToList();
+            if(viewModel.Name==null && viewModel.StartDate == null && viewModel.EndDate == null)
+            {
+                return MappingAttendanceToEmpAttedVM(attendances);
+            }
+         
+            if (viewModel.Name == null && viewModel.StartDate != null && viewModel.EndDate != null)
+            {
+                string startdate = viewModel.StartDate.Value.ToString("dd/MM/yyyy");
+                viewModel.StartDate = DateTime.Parse(startdate);
+                string enddate = viewModel.EndDate.Value.ToString("dd/MM/yyyy");
+                viewModel.EndDate = DateTime.Parse(enddate);
+                return MappingAttendanceToEmpAttedVM(attendances.Where(n => n.Date >= viewModel.StartDate && n.Date <= viewModel.EndDate).ToList());
+            }
+           
+            if (viewModel.StartDate == null && viewModel.EndDate == null)
+            {
+                List<Attendance> allEmployeeAttendace = attendances
+               .Where(n=>n.Employee.Name.ToLower().Contains(viewModel.Name.ToLower())).ToList();
+                if (allEmployeeAttendace.Count !=0)
+                    return MappingAttendanceToEmpAttedVM(allEmployeeAttendace);
+                
+               
+                List<Attendance> attendancesByDept = context.Attendances.Include(n => n.Employee).
+                ThenInclude(n => n.Department)
+               .Where(n=>n.Employee.Department.Name.ToLower().Contains(viewModel.Name.ToLower())).ToList();
+                     return MappingAttendanceToEmpAttedVM(attendancesByDept);
+
+            }
+            string startdate1 = viewModel.StartDate.Value.ToString("dd/MM/yyyy");
+            viewModel.StartDate = DateTime.Parse(startdate1);
+            string enddate1 = viewModel.EndDate.Value.ToString("dd/MM/yyyy");
+            viewModel.EndDate = DateTime.Parse(enddate1);
+
+            List<Attendance> allEmployeeAttendace1 = attendances
+               .Where(n => (n.Date >= viewModel.StartDate && n.Date <= viewModel.EndDate) && n.Employee.Name.ToLower().Contains(viewModel.Name.ToLower())).ToList();
+            if (allEmployeeAttendace1.Count != 0)
+                return MappingAttendanceToEmpAttedVM(allEmployeeAttendace1);
+
+
+            List<Attendance> attendancesByDept1 = context.Attendances.Include(n => n.Employee).
+            ThenInclude(n => n.Department)
+           .Where(n =>(n.Date >= viewModel.StartDate && n.Date <= viewModel.EndDate) && n.Employee.Department.Name.ToLower().Contains(viewModel.Name.ToLower())).ToList();
+            return MappingAttendanceToEmpAttedVM(attendancesByDept1);
+
+            
+
+            
+
+
+           
         }
         public List<EmployeeAttendanceViewModel> MappingAttendanceToEmpAttedVM(List<Attendance> attendances)
         {
@@ -60,8 +102,10 @@ namespace HRSystem.Repositories.AttendanceRepo
                 employeeAttendanceViewModels.Add(new EmployeeAttendanceViewModel { 
                     AttendanceId = attendance.Id,
                     CheckInTime = attendance.Start,
+                    Date=attendance.Date,
                     CheckOutTime = attendance.End,
-                    EmployeeName = attendance.Employee.Name
+                    EmployeeName = attendance.Employee.Name,
+                    DepartmentName =attendance.Employee.Department.Name
                 });
             }
             return employeeAttendanceViewModels;

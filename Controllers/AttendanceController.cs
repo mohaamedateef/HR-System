@@ -63,14 +63,27 @@ namespace HRSystem.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach(var item in ModelState.Root.Children)
-                {
-                    var x = item.ValidationState;
-                }
-                
+                #region Test
+                //foreach(var item in ModelState.Root.Children)
+                //{
+                //    var x = item.ValidationState;
+
+                //    //if (viewModel.EndDate == null && x.ToString() == "Invalid")
+                //    //{
+                //    //    ModelState.AddModelError("EndDate", "This Filed Is Required");
+                //    //}
+
+                //    //if (viewModel.StartDate == null && x.ToString() == "Invalid")
+                //    //{
+                //    //    ModelState.AddModelError("StartDate", "This Filed Is Required");
+                //    //}
+
+                //}
+                #endregion
                 ViewBag.EmployeeAttendances = new List<EmployeeAttendanceViewModel>();
                 return View("Index", viewModel);
             }
+            
             ViewBag.EmployeeAttendances = AttendanceService.Search(viewModel);
             return View("Index");
         }
@@ -117,5 +130,7 @@ namespace HRSystem.Controllers
             }
             return Json(false);
         }
+
+    
     }
 }

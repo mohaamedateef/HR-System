@@ -2,5 +2,6 @@
 {
     public interface IExceptionRepository
     {
+        void Insert(ExceptionAttendance exception);
     }
 }
