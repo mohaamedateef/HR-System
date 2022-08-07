@@ -1,10 +1,7 @@
 ﻿@model EmployeeViewModel
-@*@{
-    if (Model == null)
-    {
-        Model = new AddEmployeeViewModel();
-    }
-}*@
+@{
+    SelectList deptlist = new SelectList(ViewBag.DeptList, "Id", "Name");
+}
 <div class="col-sm-12">
     <h2 class="content-header">Add Employees Form</h2>
 </div>
@@ -146,9 +143,8 @@
                         <div class="form-group row">
                             <label class="col-md-3 label-control" for="projectinput12">Department: </label>
                             <div class="col-md-9">
-                             <select class="form-select" asp-for="DeptId" required aria-label="select example">
-                                    <option value="0">Open this select menu</option>
-                                     <option value="1">Development</option>
+                             <select class="form-select" asp-for="DeptId" asp-items="deptlist" required aria-label="select example">
+                                    <option value="0">Select Department</option>
                                       
                                              </select>
                                  <span class="text-danger ms-2" asp-validation-for="DeptId"></span>
