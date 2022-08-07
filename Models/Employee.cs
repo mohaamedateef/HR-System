@@ -33,6 +33,6 @@
         public virtual Department? Department { get; set; }
         public virtual List<Salary>? Salary { get; set; }
         public virtual List<Attendance>? Attendance { get; set; }
-        public virtual List<Exception>? Exceptions { get; set; }
+        public virtual List<ExceptionAttendance>? Exceptions { get; set; }
     }
 }

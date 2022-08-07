@@ -10,5 +10,10 @@ namespace HRSystem.Services.ExceptionServ
         {
             this.ExceptionRepo = ExceptionRepo;
         }
+
+        public void Insert(ExceptionAttendance exception)
+        {
+            ExceptionRepo.Insert(exception);
+        }
     }
 }

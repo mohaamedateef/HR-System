@@ -26,7 +26,7 @@ namespace HRSystem.Services.AttendanceServ
             var Attendances = GetAll();
             foreach (var attendance in Attendances)
             {
-                EmployeeAttendances.Add(new EmployeeAttendanceViewModel { AttendanceId = attendance.Id, EmployeeName = attendance.Employee.Name, CheckInTime = attendance.Start, CheckOutTime = attendance.End, Date = attendance.Date });
+                EmployeeAttendances.Add(new EmployeeAttendanceViewModel { AttendanceId = attendance.Id, EmployeeName = attendance.Employee.Name, CheckInTime = attendance.Start, CheckOutTime = attendance.End, Date = attendance.Date,DepartmentName=attendance.Employee.Department.Name });
             }
             return EmployeeAttendances;
         }
@@ -175,6 +175,7 @@ namespace HRSystem.Services.AttendanceServ
         public void UpdateAttendanceViewModel(AttendanceEditViewModel UpdatedAttendance, int Id)
         {
             Attendance Attendance = GetById(Id);
+            
             Attendance.Start = UpdatedAttendance.Start;
             Attendance.End = UpdatedAttendance.End;
             UpdateAttendance(Attendance, Id);

@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string EmployeeName { get; set; }
         [DataType(DataType.Date)]
+
         public DateTime Date { get; set; }
         [DataType(DataType.Time)]
         [Remote("CheckStart", "Attendance", ErrorMessage = "Start time must be before end time.",AdditionalFields ="End")]

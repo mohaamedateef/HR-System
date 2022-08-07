@@ -9,5 +9,12 @@ namespace HRSystem.Repositories.ExceptionRepo
         {
             this.context = context;
         }
+
+        public void Insert(ExceptionAttendance exception)
+        {
+            context.Exceptions.Add(exception);
+            context.SaveChanges();
+        }
     }
+    
 }
