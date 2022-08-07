@@ -37,6 +37,7 @@ namespace HRSystem.Controllers
         //[Authorize(Permissions.Employee.Create)]
         public IActionResult Add()
         {
+            ViewBag.DeptList = employeeService.GetAllDepartment();
             return View();
         }
        
@@ -84,6 +85,7 @@ namespace HRSystem.Controllers
                 }
 
             }
+            ViewBag.DeptList = employeeService.GetAllDepartment();
             return View(employeeViewModel);
 
         }
@@ -95,6 +97,7 @@ namespace HRSystem.Controllers
 
             EmployeeViewModel employeeViewModel = employeeService.GetViewModel(id);
             employeeViewModel.Id = id;
+            ViewBag.DeptList = employeeService.GetAllDepartment();
 
             return View(employeeViewModel);
         }
@@ -128,6 +131,8 @@ namespace HRSystem.Controllers
                 employeeService.UpdateEmployeeWithViewModel(employeeViewModel);
                 return RedirectToAction("Index");
             }
+            ViewBag.DeptList = employeeService.GetAllDepartment();
+
             return View(employeeViewModel);
         }
         [HttpGet]

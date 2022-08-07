@@ -5,9 +5,12 @@ namespace HRSystem.Services.EmployeeServ
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository EmployeeRepo;
-        public EmployeeService(IEmployeeRepository EmployeeRepo)
+        private readonly IDepartmentRepository departmentRepository;
+
+        public EmployeeService(IEmployeeRepository EmployeeRepo,IDepartmentRepository departmentRepository)
         {
             this.EmployeeRepo = EmployeeRepo;
+            this.departmentRepository = departmentRepository;
         }
         public List<Employee> GetAllEmployee()
         {
@@ -108,6 +111,11 @@ namespace HRSystem.Services.EmployeeServ
         public Employee GetEmployeeByNationalId(string Id)
         {
            return EmployeeRepo.GetEmployeeByNationalId(Id);
+        }
+
+        public List<Department> GetAllDepartment()
+        {
+            return departmentRepository.GetAll();
         }
     }
 }
