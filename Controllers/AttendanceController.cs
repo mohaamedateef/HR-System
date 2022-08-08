@@ -8,7 +8,6 @@ namespace HRSystem.Controllers
     {
         private readonly IAttendanceService AttendanceService;
         private readonly IDepartmentService DepartmentService;
-
         public AttendanceController(IAttendanceService AttendanceService, IDepartmentService DepartmentService)
         {
             this.AttendanceService = AttendanceService;
@@ -109,16 +108,19 @@ namespace HRSystem.Controllers
         public IActionResult ExportToExcel()
         {
             DataTable dt = new DataTable("");
-            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("Name"),
+            dt.Columns.AddRange(new DataColumn[7] { new DataColumn("Name"),
                                         new DataColumn("National Id"),
                                         new DataColumn("Date"),
+                                        new DataColumn("CheckIn"),
+                                        new DataColumn("CheckOut"),
                                         new DataColumn("Bouns Hours"),
                                         new DataColumn("Discount Hours") });
 
             var Attendances = AttendanceService.GetAll();
             foreach (var attendance in Attendances)
             {
-                dt.Rows.Add(attendance.Employee.Name, attendance.Employee.NationalId, attendance.Date, attendance.BonusHours, attendance.DiscountHours);
+                dt.Rows.Add(attendance.Employee.Name, attendance.Employee.NationalId, attendance.Date,
+                    attendance.Start, attendance.End, attendance.BonusHours, attendance.DiscountHours);
             }
             using (XLWorkbook wb = new XLWorkbook())
             {
@@ -156,7 +158,5 @@ namespace HRSystem.Controllers
             }
             return Json(false);
         }
-
-    
     }
 }
