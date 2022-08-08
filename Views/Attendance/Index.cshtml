@@ -44,7 +44,7 @@
                             <div class="d-flex ms-5">
                                 <input type="file" name="file" id="import_file" class="form-control mb-1 me-2">
                                 <button onclick="checkValidation()" type="submit" class="btn btn-primary ps-1 me-2 ms-2">Import</button>
-                                <button type="button" class="btn btn-warning ms-2 me-2">Export</button>
+                                <a asp-action="ExportToExcel" class="btn btn-warning ms-2 me-2">Export</a>
                             </div>
                             <span style="display:none;" id="filevalidation" class="text-danger ms-5" >Please choose file with this formats(.xls,.xlsx)</span>
                             @if(ViewBag.status==1)
@@ -75,7 +75,6 @@
                             <td>@Attendance.AttendanceId</td>
                             <td>@Attendance.EmployeeName</td>
                             <td>@Attendance.DepartmentName</td>
-
                             <td>@Attendance.Date.ToShortDateString()</td>
                             <td>@Attendance.CheckInTime</td>
                             <th>@Attendance.CheckOutTime</th>
