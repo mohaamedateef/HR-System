@@ -7,6 +7,9 @@ namespace HRSystem.Services.AttendanceServ
         List<EmployeeAttendanceViewModel> GetEmployeeAttendances();
         List<AttendanceExcelViewModel> ReadDataFromExcelSheet(string FileName);
         List<int> AddAttendanceToDatabase(List<AttendanceExcelViewModel> AttendanceData);
+        void SaveChangesToDatabase(List<Attendance> attendances);
+        int GetDiscount(TimeSpan AttendanceStart, TimeSpan EmployeeStart);
+        int GetBouns(TimeSpan AttendanceEnd, TimeSpan EmployeeEnd);
         void UpdateAttendanceViewModel(AttendanceEditViewModel UpdatedAttendance, int Id);
         List<string> GetExtensions();
     }
