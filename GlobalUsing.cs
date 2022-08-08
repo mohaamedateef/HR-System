@@ -38,6 +38,9 @@ global using Microsoft.Extensions.Options;
 global using System;
 global using Microsoft.AspNetCore.SignalR;
 global using HRSystem.HubChat;
+global using System.Data;
+global using ClosedXML.Excel;
+
 
 
 

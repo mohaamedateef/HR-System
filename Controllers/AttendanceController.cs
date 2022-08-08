@@ -106,6 +106,32 @@ namespace HRSystem.Controllers
             AttendanceService.UpdateAttendanceViewModel(attendance,attendance.Id);
             return RedirectToAction("Index");
         }
+        public IActionResult ExportToExcel()
+        {
+            DataTable dt = new DataTable("");
+            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("Name"),
+                                        new DataColumn("National Id"),
+                                        new DataColumn("Date"),
+                                        new DataColumn("Bouns Hours"),
+                                        new DataColumn("Discount Hours") });
+
+            var Attendances = AttendanceService.GetAll();
+            foreach (var attendance in Attendances)
+            {
+                dt.Rows.Add(attendance.Employee.Name, attendance.Employee.NationalId, attendance.Date, attendance.BonusHours, attendance.DiscountHours);
+            }
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                var WS = wb.Worksheets.Add("sheet1");
+                // The false parameter indicates that a table should not be created
+                WS.FirstCell().InsertTable(dt, false);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"Attendance-{DateTime.Now.ToString("d")}.xlsx");
+                }
+            }
+        }
         public IActionResult CheckStart(TimeSpan Start, TimeSpan End)
         {
             if (Start > End)
