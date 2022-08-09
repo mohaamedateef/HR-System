@@ -103,7 +103,7 @@ namespace HRSystem.Services.AttendanceServ
         public void SaveChangesToDatabase(List<Attendance> attendances)
         {
             int DiscountTime = 0;
-            int BounsTime = 0;
+            int BonusTime = 0;
             for (int i = 0; i < attendances.Count; i++)
             {
                 Employee employee = EmployeeService.GetEmployeeById((int)attendances[i].EmpId);
@@ -116,36 +116,36 @@ namespace HRSystem.Services.AttendanceServ
                 {
                     DiscountTime = GetDiscount(attendances[i].Start, ExceptionAttendance.Start);
                     attendances[i].DiscountHours = DiscountTime;
-                    BounsTime = GetBouns(attendances[i].End, ExceptionAttendance.End);
-                    if(BounsTime > 0)
+                    BonusTime = GetBonus(attendances[i].End, ExceptionAttendance.End);
+                    if(BonusTime > 0)
                     {
-                        BounsTime = GetBouns(attendances[i].End, employee.End);
-                        if(BounsTime >= 0)
+                        BonusTime = GetBonus(attendances[i].End, employee.End);
+                        if(BonusTime >= 0)
                         {
-                            attendances[i].BonusHours = BounsTime;
+                            attendances[i].BonusHours = BonusTime;
                         }
                         else
                         {
-                            attendances[i].DiscountHours += -BounsTime;
+                            attendances[i].DiscountHours += -BonusTime;
                         }
                     }
                     else
                     {
-                        attendances[i].DiscountHours += -BounsTime;
+                        attendances[i].DiscountHours += -BonusTime;
                     }
                 }
                 else
                 {
                     DiscountTime = GetDiscount(attendances[i].Start, employee.Start);
                     attendances[i].DiscountHours = DiscountTime;
-                    BounsTime = GetBouns(attendances[i].End, employee.End);
-                    if(BounsTime >= 0)
+                    BonusTime = GetBonus(attendances[i].End, employee.End);
+                    if(BonusTime >= 0)
                     {
-                        attendances[i].BonusHours = BounsTime;
+                        attendances[i].BonusHours = BonusTime;
                     }
                     else
                     {
-                        attendances[i].DiscountHours += -BounsTime;
+                        attendances[i].DiscountHours += -BonusTime;
                     }
                 }
                 int? AttendanceId = GetAttendanceOfDate(employee.Id, attendances[i].Date);
@@ -183,22 +183,22 @@ namespace HRSystem.Services.AttendanceServ
         {
             return ExceptionService.GetEmployeeException(EmployeeId, AttendanceDate);
         }
-        public int GetBouns(TimeSpan AttendanceEnd, TimeSpan EmployeeEnd)
+        public int GetBonus(TimeSpan AttendanceEnd, TimeSpan EmployeeEnd)
         {
-            int BounsTime = 0;
+            int BonusTime = 0;
             if (AttendanceEnd > EmployeeEnd)
             {
                 TimeSpan Difference = AttendanceEnd - EmployeeEnd;
                 int DifferenceMinutes = AttendanceEnd.Minutes;
                 if (DifferenceMinutes > 15)
                 {
-                    BounsTime = (int)Difference.TotalHours;
-                    return BounsTime + 1;
+                    BonusTime = (int)Difference.TotalHours;
+                    return BonusTime + 1;
                 }
                 else
                 {
-                    BounsTime = (int)Difference.TotalHours;
-                    return BounsTime;
+                    BonusTime = (int)Difference.TotalHours;
+                    return BonusTime;
                 }
             }
             else
@@ -207,13 +207,13 @@ namespace HRSystem.Services.AttendanceServ
                 int DifferenceMinutes = AttendanceEnd.Minutes;
                 if (DifferenceMinutes > 15)
                 {
-                    BounsTime = (int)Difference.TotalHours;
-                    return -(BounsTime + 1);
+                    BonusTime = (int)Difference.TotalHours;
+                    return -(BonusTime + 1);
                 }
                 else
                 {
-                    BounsTime = (int)Difference.TotalHours;
-                    return -BounsTime;
+                    BonusTime = (int)Difference.TotalHours;
+                    return -BonusTime;
                 }
             }
         }
@@ -243,8 +243,8 @@ namespace HRSystem.Services.AttendanceServ
             Employee Employee = EmployeeService.GetEmployeeById((int)Attendance.EmpId);
             int DiscountTime = GetDiscount(UpdatedAttendance.Start, Employee.Start);
             Attendance.DiscountHours = DiscountTime;
-            int BounsTime = GetBouns(UpdatedAttendance.End, Employee.End);
-            Attendance.BonusHours = BounsTime;
+            int BonusTime = GetBonus(UpdatedAttendance.End, Employee.End);
+            Attendance.BonusHours = BonusTime;
             Attendance.Start = UpdatedAttendance.Start;
             Attendance.End = UpdatedAttendance.End;
             UpdateAttendance(Attendance, Id);
