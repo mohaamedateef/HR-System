@@ -27,9 +27,9 @@ namespace HRSystem.Controllers
         //[Authorize(Permissions.Employee.View)]
         public IActionResult Details(int id)
         {
-            Employee employee=employeeService.GetEmployeeById(id);
-            if(employee!=null)
-            return View(employee);
+            Employee employee = employeeService.GetEmployeeById(id);
+            if (employee != null)
+                return View(employee);
 
             return NotFound();
         }
@@ -38,9 +38,10 @@ namespace HRSystem.Controllers
         public IActionResult Add()
         {
             ViewBag.DeptList = employeeService.GetAllDepartment();
+
             return View();
         }
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Permissions.Employee.Create)]
@@ -48,9 +49,9 @@ namespace HRSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (employeeViewModel.Gender == "0") 
+                if (employeeViewModel.Gender == null)
                 {
-                    if(employeeViewModel.DeptId==0)
+                    if (employeeViewModel.DeptId == null)
                     {
                         ModelState.AddModelError("Gender", "Gender is required");
                         ModelState.AddModelError("DeptId", "Department is required");
@@ -63,20 +64,20 @@ namespace HRSystem.Controllers
                         ModelState.AddModelError("Gender", "Gender is required");
                         return View(employeeViewModel);
                     }
-                    
+
                 }
-                else if (employeeViewModel.DeptId == 0)
+                else if (employeeViewModel.DeptId == null)
                 {
                     ModelState.AddModelError("DeptId", "Department is required");
                     return View(employeeViewModel);
                 }
                 try
-                    {
+                {
 
-                        employeeService.InsertViewModel(employeeViewModel);
-                        return RedirectToAction("Index");
+                    employeeService.InsertViewModel(employeeViewModel);
+                    return RedirectToAction("Index");
 
-                    }
+                }
                 catch
                 {
                     ModelState.AddModelError("Other", "Faild To Add Employee Please Try Again");
@@ -98,6 +99,28 @@ namespace HRSystem.Controllers
             EmployeeViewModel employeeViewModel = employeeService.GetViewModel(id);
             employeeViewModel.Id = id;
             ViewBag.DeptList = employeeService.GetAllDepartment();
+            if (employeeViewModel.Gender == null)
+            {
+                if (employeeViewModel.DeptId == null)
+                {
+                    ModelState.AddModelError("Gender", "Gender is required");
+                    ModelState.AddModelError("DeptId", "Department is required");
+                    return View(employeeViewModel);
+                }
+                else
+                {
+                    ModelState.AddModelError("Gender", "Gender is required");
+                    return View(employeeViewModel);
+                }
+
+            }
+            else if (employeeViewModel.DeptId == null)
+            {
+                ModelState.AddModelError("DeptId", "Department is required");
+                return View(employeeViewModel);
+            }
+
+
 
             return View(employeeViewModel);
         }
@@ -110,7 +133,7 @@ namespace HRSystem.Controllers
             {
                 if (employeeViewModel.Gender == "0")
                 {
-                    if (employeeViewModel.DeptId == 0)
+                    if (employeeViewModel.DeptId == null)
                     {
                         ModelState.AddModelError("Gender", "Gender is required");
                         ModelState.AddModelError("DeptId", "Department is required");
@@ -123,7 +146,7 @@ namespace HRSystem.Controllers
                     }
 
                 }
-                else if (employeeViewModel.DeptId == 0)
+                else if (employeeViewModel.DeptId == null)
                 {
                     ModelState.AddModelError("DeptId", "Department is required");
                     return View(employeeViewModel);

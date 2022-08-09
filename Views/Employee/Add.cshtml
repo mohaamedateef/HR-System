@@ -74,7 +74,7 @@
                             <label class="col-md-3 label-control" for="projectinput9">Gender: </label>
                             <div class="col-md-9">
                                 <select class="form-select" asp-for="Gender" required aria-label="select example">
-                                    <option value="0">Select Gender</option>
+                                    <option value="">Select Gender</option>
                                      <option value="Male">Male</option>
                                      <option value="Female">Female</option>
                                    
@@ -144,7 +144,7 @@
                             <label class="col-md-3 label-control" for="projectinput12">Department: </label>
                             <div class="col-md-9">
                              <select class="form-select" asp-for="DeptId" asp-items="deptlist" required aria-label="select example">
-                                    <option value="0">Select Department</option>
+                                    <option value="">Select Department</option>
                                       
                                              </select>
                                  <span class="text-danger ms-2" asp-validation-for="DeptId"></span>
