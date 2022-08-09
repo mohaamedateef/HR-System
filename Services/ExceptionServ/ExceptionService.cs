@@ -9,11 +9,14 @@ namespace HRSystem.Services.ExceptionServ
         public ExceptionService(IExceptionRepository ExceptionRepo)
         {
             this.ExceptionRepo = ExceptionRepo;
-        }
-
+        } 
         public void Insert(ExceptionAttendance exception)
         {
             ExceptionRepo.Insert(exception);
+        }
+        public ExceptionAttendance GetEmployeeException(int EmployeeId,DateTime AttendanceDate)
+        {
+            return ExceptionRepo.GetEmployeeException(EmployeeId, AttendanceDate);
         }
     }
 }

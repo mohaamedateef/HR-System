@@ -9,12 +9,14 @@ namespace HRSystem.Services.AttendanceServ
         private readonly IAttendanceRepository AttendanceRepo;
         private readonly IEmployeeService EmployeeService;
         private readonly IGeneralSettingService GeneralSetting;
+        private readonly IExceptionService ExceptionService;
 
-        public AttendanceService(IAttendanceRepository AttendanceRepo,IEmployeeService EmployeeService, IGeneralSettingService GeneralSetting)
+        public AttendanceService(IAttendanceRepository AttendanceRepo,IEmployeeService EmployeeService, IGeneralSettingService GeneralSetting, IExceptionService ExceptionService)
         {
             this.AttendanceRepo = AttendanceRepo;
             this.EmployeeService = EmployeeService;
             this.GeneralSetting = GeneralSetting;
+            this.ExceptionService = ExceptionService;
         }
         public List<Attendance> GetAll()
         {
@@ -109,10 +111,43 @@ namespace HRSystem.Services.AttendanceServ
                 {
                     attendances[i].Absent = true;
                 }
-                DiscountTime = GetDiscount(attendances[i].Start, employee.Start);
-                attendances[i].DiscountHours = DiscountTime;
-                BounsTime = GetBouns(attendances[i].End, employee.End);
-                attendances[i].BonusHours = BounsTime;
+                ExceptionAttendance ExceptionAttendance = CheckException(employee.Id, attendances[i].Date);
+                if (ExceptionAttendance != null)
+                {
+                    DiscountTime = GetDiscount(attendances[i].Start, ExceptionAttendance.Start);
+                    attendances[i].DiscountHours = DiscountTime;
+                    BounsTime = GetBouns(attendances[i].End, ExceptionAttendance.End);
+                    if(BounsTime > 0)
+                    {
+                        BounsTime = GetBouns(attendances[i].End, employee.End);
+                        if(BounsTime >= 0)
+                        {
+                            attendances[i].BonusHours = BounsTime;
+                        }
+                        else
+                        {
+                            attendances[i].DiscountHours += -BounsTime;
+                        }
+                    }
+                    else
+                    {
+                        attendances[i].DiscountHours += -BounsTime;
+                    }
+                }
+                else
+                {
+                    DiscountTime = GetDiscount(attendances[i].Start, employee.Start);
+                    attendances[i].DiscountHours = DiscountTime;
+                    BounsTime = GetBouns(attendances[i].End, employee.End);
+                    if(BounsTime >= 0)
+                    {
+                        attendances[i].BonusHours = BounsTime;
+                    }
+                    else
+                    {
+                        attendances[i].DiscountHours += -BounsTime;
+                    }
+                }
                 int? AttendanceId = GetAttendanceOfDate(employee.Id, attendances[i].Date);
                 if (AttendanceId != null)
                 {
@@ -144,6 +179,10 @@ namespace HRSystem.Services.AttendanceServ
             }
             return DiscountTime;
         }
+        public ExceptionAttendance CheckException(int EmployeeId, DateTime AttendanceDate)
+        {
+            return ExceptionService.GetEmployeeException(EmployeeId, AttendanceDate);
+        }
         public int GetBouns(TimeSpan AttendanceEnd, TimeSpan EmployeeEnd)
         {
             int BounsTime = 0;
@@ -162,7 +201,21 @@ namespace HRSystem.Services.AttendanceServ
                     return BounsTime;
                 }
             }
-            return BounsTime;
+            else
+            {
+                TimeSpan Difference = EmployeeEnd - AttendanceEnd;
+                int DifferenceMinutes = AttendanceEnd.Minutes;
+                if (DifferenceMinutes > 15)
+                {
+                    BounsTime = (int)Difference.TotalHours;
+                    return -(BounsTime + 1);
+                }
+                else
+                {
+                    BounsTime = (int)Difference.TotalHours;
+                    return -BounsTime;
+                }
+            }
         }
         public void AddAttendance(Attendance NewAttendance)
         {

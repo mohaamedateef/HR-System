@@ -1,6 +1,4 @@
-﻿using HRSystem.Models;
-
-namespace HRSystem.Repositories.ExceptionRepo
+﻿namespace HRSystem.Repositories.ExceptionRepo
 {
     public class ExceptionRepository : IExceptionRepository
     {
@@ -9,12 +7,15 @@ namespace HRSystem.Repositories.ExceptionRepo
         {
             this.context = context;
         }
-
         public void Insert(ExceptionAttendance exception)
         {
             context.Exceptions.Add(exception);
             context.SaveChanges();
         }
+        public ExceptionAttendance GetEmployeeException(int EmpId, DateTime AttendanceDate)
+        {
+            return context.Exceptions.Where(e => e.EmployeeId == EmpId && e.Date == AttendanceDate).FirstOrDefault();
+        }
     }
-    
+
 }
