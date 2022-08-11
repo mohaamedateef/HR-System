@@ -257,5 +257,11 @@ namespace HRSystem.Services.AttendanceServ
         {
             return AttendanceRepo.Search(viewModel);
         }
+
+        public List<dateformual> GetDateformuals()
+        {
+            return AttendanceRepo.GetDateformuals();
+        }
+
     }
 }

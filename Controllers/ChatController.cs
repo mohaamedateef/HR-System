@@ -14,6 +14,7 @@ namespace HRSystem.Controllers
             this.chatService = chatService;
             this.userManager = userManager;
         }
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             if (User.Identity.Name == null)

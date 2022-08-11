@@ -9,6 +9,14 @@ namespace HRSystem.Repositories.GeneralSettingRepo
         {
             this.context = context;
         }
+        public int OverTimePricePerHour()
+        {
+            return context.GeneralSettings.Select(n => n.ValueOfExtra).FirstOrDefault();
+        }
+        public int DeductionPricePerHour()
+        {
+            return context.GeneralSettings.Select(n => n.ValueOfDiscount).FirstOrDefault();
+        }
         public List<GeneralSetting> GetAll()
         {
             return context.GeneralSettings.ToList();
