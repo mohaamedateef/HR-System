@@ -79,12 +79,13 @@
                       </li>
                    </ul>
                 </li>
-                <li class=" nav-item"><a href="salary_report.html"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Salary report</span></a>
-                </li>
-                <li class=" nav-item"><a href="/Chat/Index"><i class="icon-puzzle"></i><span data-i18n="" class="menu-title">Chat</span></a>
+               
+               <li><a asp-action="SalaryReport" asp-controller="Salary" asp-route-empId="" asp-route-datemonth="2022-7-31"  class="nav-item"> 
+                    <i class="icon-layers"></i><span data-i18n="" class="menu-title">Salary report</span></a>  </li>
+                <li class=" nav-item"><a asp-action="Index" asp-controller="Chat"> <i class="icon-puzzle"></i><span data-i18n="" class="menu-title">Chat</span></a>
                 </li>
                
-                <li class=" nav-item"><a href="login.html"><i class="icon-pin"></i><span data-i18n="" class="menu-title">Login Page </span></a>
+                <li class=" nav-item"><a asp-action="Login" asp-controller="Account"><i class="icon-pin"></i><span data-i18n="" class="menu-title">Login Page </span></a>
                  </li
              </ul>
           </div>

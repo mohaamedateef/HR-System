@@ -9,6 +9,10 @@ namespace HRSystem.Repositories.AttendanceRepo
         {
             this.context = context;
         }
+        public List<dateformual> GetDateformuals()
+        {
+            return context.Attendances.Select(x => new dateformual { Month = x.Date.Month, Year = x.Date.Year }).Distinct().ToList();
+        }
         public List<Attendance> GetAll()
         {
             return context.Attendances.Include(n => n.Employee).ThenInclude(n=>n.Department).ToList();

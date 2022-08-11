@@ -11,6 +11,7 @@ namespace HRSystem.Services.GeneralSettingServ
             this.GeneralRepo = GeneralRepo;
             this.WeeklyHolidayRepo = WeeklyHolidayRepo;
         }
+
         public List<GeneralSetting> GetAll()
         {
             return GeneralRepo.GetAll();
@@ -62,6 +63,14 @@ namespace HRSystem.Services.GeneralSettingServ
                 "Thursday",
                 "Friday"
             };
+        }
+        public int OverTimePricePerHour()
+        {
+            return GeneralRepo.OverTimePricePerHour();
+        }
+        public int DeductionPricePerHour()
+        {
+            return GeneralRepo.DeductionPricePerHour();
         }
     }
 }
