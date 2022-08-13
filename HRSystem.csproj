@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ActionFiltters\" />
-    <Folder Include="Views\WeeklyHoliday\" />
+    <Compile Remove="ActionFiltters\**" />
+    <Compile Remove="Views\Hr\**" />
+    <Compile Remove="Views\WeeklyHoliday\**" />
+    <Content Remove="ActionFiltters\**" />
+    <Content Remove="Views\Hr\**" />
+    <Content Remove="Views\WeeklyHoliday\**" />
+    <EmbeddedResource Remove="ActionFiltters\**" />
+    <EmbeddedResource Remove="Views\Hr\**" />
+    <EmbeddedResource Remove="Views\WeeklyHoliday\**" />
+    <None Remove="ActionFiltters\**" />
+    <None Remove="Views\Hr\**" />
+    <None Remove="Views\WeeklyHoliday\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\files\" />
   </ItemGroup>
@@ -23,7 +36,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
-    <Folder Include="Views\Hr\" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
