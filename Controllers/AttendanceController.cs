@@ -3,7 +3,6 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace HRSystem.Controllers
 {
-    //[Authorize(Roles = "Super Admin")]
     public class AttendanceController : Controller
     {
         private readonly IAttendanceService AttendanceService;
@@ -14,7 +13,8 @@ namespace HRSystem.Controllers
             this.DepartmentService = DepartmentService;
         }
         [HttpGet]
-        public IActionResult Index(string Errors,int status)
+        [Authorize(Permissions.attendance.View)]
+        public IActionResult Index(string Errors, int status)
         {
             ViewBag.Errors = Errors;
             ViewBag.status = status;
@@ -22,16 +22,18 @@ namespace HRSystem.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Permissions.attendance.Create)]
+
         public IActionResult AddFile(IFormFile File, [FromServices] IHostingEnvironment HostingEnviroment)
         {
-            if(File==null)
+            if (File == null)
                 return RedirectToAction("Index");
             string FileName = $"{HostingEnviroment.WebRootPath}\\files\\{File.FileName}";
             FileInfo file = new FileInfo(FileName);
             if (!AttendanceService.GetExtensions().Any(e => e == file.Extension))
             {
-                ModelState.AddModelError("invalidextension","Invalid File Extension");
-                return RedirectToAction("Index",new {status = 1});
+                ModelState.AddModelError("invalidextension", "Invalid File Extension");
+                return RedirectToAction("Index", new { status = 1 });
             }
             using (FileStream FileStream = System.IO.File.Create(FileName))
             {
@@ -48,16 +50,18 @@ namespace HRSystem.Controllers
             else
             {
                 txt = "Attention!! \nThis Rows";
-                for(int i = 0; i<ListOfErrors.Count;i++)
+                for (int i = 0; i < ListOfErrors.Count; i++)
                 {
-                    txt += i+1;
+                    txt += i + 1;
                     txt += ", ";
                 }
                 txt += "have invalid data please check again.";
             }
-            return RedirectToAction("Index", new { Errors = txt});
+            return RedirectToAction("Index", new { Errors = txt });
         }
         [HttpPost]
+        [Authorize(Permissions.attendance.View)]
+
         public IActionResult Search(SearchAttendanceViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -82,29 +86,36 @@ namespace HRSystem.Controllers
                 ViewBag.EmployeeAttendances = new List<EmployeeAttendanceViewModel>();
                 return View("Index", viewModel);
             }
-            
+
             ViewBag.EmployeeAttendances = AttendanceService.Search(viewModel);
             return View("Index");
         }
         [HttpGet]
+        [Authorize(Permissions.attendance.Delete)]
+
         public IActionResult DeleteAttendance([FromRoute] int Id)
         {
             AttendanceService.DeleteAttendance(Id);
             return RedirectToAction("Index");
         }
         [HttpGet]
+        [Authorize(Permissions.attendance.Edit)]
+
         public IActionResult Edit(int Id)
         {
             Attendance NewAttendacnce = AttendanceService.GetById(Id);
-            AttendanceEditViewModel attendance = new AttendanceEditViewModel { Id=Id, Start = NewAttendacnce.Start, End= NewAttendacnce.End, Date=NewAttendacnce.Date, EmployeeName= NewAttendacnce.Employee.Name};
+            AttendanceEditViewModel attendance = new AttendanceEditViewModel { Id = Id, Start = NewAttendacnce.Start, End = NewAttendacnce.End, Date = NewAttendacnce.Date, EmployeeName = NewAttendacnce.Employee.Name };
             return View(attendance);
         }
         [HttpPost]
+        [Authorize(Permissions.attendance.Edit)]
+
         public IActionResult Edit(AttendanceEditViewModel attendance)
         {
-            AttendanceService.UpdateAttendanceViewModel(attendance,attendance.Id);
+            AttendanceService.UpdateAttendanceViewModel(attendance, attendance.Id);
             return RedirectToAction("Index");
         }
+        [Authorize(Permissions.attendance.View)]
         public IActionResult ExportToExcel()
         {
             DataTable dt = new DataTable("");

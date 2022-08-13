@@ -28,9 +28,8 @@ namespace HRSystem.Models
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         [ForeignKey("Department")]
-        public int? DeptId { get; set; }
+        public int DeptId { get; set; }
         public virtual Department? Department { get; set; }
-        public virtual List<Salary>? Salary { get; set; }
         public virtual List<Attendance>? Attendance { get; set; }
         public virtual List<ExceptionAttendance>? Exceptions { get; set; }
     }
