@@ -10,7 +10,7 @@ namespace HRSystem.Controllers
         {
             this.employeeService = employeeService;
         }
-        //[Authorize(Permissions.Employee.View)]
+        [Authorize(Permissions.Employee.View)]
         public IActionResult Index()
         {
 
@@ -56,8 +56,6 @@ namespace HRSystem.Controllers
                         ModelState.AddModelError("Gender", "Gender is required");
                         ModelState.AddModelError("DeptId", "Department is required");
                         return View(employeeViewModel);
-
-
                     }
                     else
                     {
@@ -73,16 +71,13 @@ namespace HRSystem.Controllers
                 }
                 try
                 {
-
                     employeeService.InsertViewModel(employeeViewModel);
                     return RedirectToAction("Index");
-
                 }
                 catch
                 {
                     ModelState.AddModelError("Other", "Faild To Add Employee Please Try Again");
                     return View(employeeViewModel);
-
                 }
 
             }
@@ -95,7 +90,6 @@ namespace HRSystem.Controllers
         //[Authorize(Permissions.Employee.Edit)]
         public IActionResult Edit(int id)
         {
-
             EmployeeViewModel employeeViewModel = employeeService.GetViewModel(id);
             employeeViewModel.Id = id;
             ViewBag.DeptList = employeeService.GetAllDepartment();

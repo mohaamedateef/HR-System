@@ -8,7 +8,9 @@ namespace HRSystem.Controllers
         private readonly IChatService chatService;
         private readonly UserManager<Hr> userManager;
 
-        public ChatController(IAccountService accountService, IChatService chatService, UserManager<Hr> userManager)
+        public ChatController(IAccountService accountService,
+            IChatService chatService,
+            UserManager<Hr> userManager)
         {
             this.accountService = accountService;
             this.chatService = chatService;

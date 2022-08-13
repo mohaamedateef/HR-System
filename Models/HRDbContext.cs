@@ -30,8 +30,8 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WeeklyHoliday>().HasKey(c => new { c.GeneralId, c.Day });
+            modelBuilder.Entity<Employee>().Property(c => c.DeptId).HasDefaultValue(1);
             base.OnModelCreating(modelBuilder);
-
         }
     }
 }
