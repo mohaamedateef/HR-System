@@ -44,7 +44,7 @@
 <tbody>
 
 <tr>
-<td>Add employee</td>
+<td>employee</td>
 @for(int i=0;i<4;i++)
 {
 <input type="hidden" asp-for="@Model.RoleCalims[i].DisplayValue" />
@@ -83,7 +83,7 @@
 }
 </tr>
 <tr>
-<td>Add New Group</td>
+<td>Users</td>
 
 @for(int i=16;i<20;i++)
 {
@@ -115,7 +115,28 @@ Attendance</td>
 <input asp-for="@Model.RoleCalims[i].IsSelected" class="form-check-input" />
 </td>
 }
-</tr>                                                                                                                                                                                                                            </yr>
+</tr>  
+<tr>
+<td>Department</td>
+
+@for(int i=28;i<32;i++)
+{
+<input type="hidden" asp-for="@Model.RoleCalims[i].DisplayValue" />
+<td>
+<input asp-for="@Model.RoleCalims[i].IsSelected" class="form-check-input" />
+</td>
+}
+</tr>
+<tr>
+<td>Exception</td>
+
+@for(int i=32;i<36;i++)
+{
+<input type="hidden" asp-for="@Model.RoleCalims[i].DisplayValue" />
+<td>
+<input asp-for="@Model.RoleCalims[i].IsSelected" class="form-check-input" />
+</td>
+}
 </tbody>
 </table>
 <div class="form-actions">							

@@ -2,21 +2,17 @@
 
 namespace HRSystem.Controllers
 {
-    //[Authorize(Roles = "Super Admin")]
     public class AccountController : Controller
     {
         private readonly IAccountService accountService;
         private readonly SignInManager<Hr> signInManager;
 
-        public AccountController(IAccountService accountService,SignInManager<Hr> signInManager )
+        public AccountController(IAccountService accountService, SignInManager<Hr> signInManager)
         {
             this.accountService = accountService;
             this.signInManager = signInManager;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
@@ -25,9 +21,8 @@ namespace HRSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
-        [Authorize(Permissions.Employee.Create)]
-        public async Task< IActionResult> Register(RegisterViewModel registerViewModel)
+
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -36,7 +31,7 @@ namespace HRSystem.Controllers
                     ModelState.AddModelError("Email", "This Email Already Exist!!");
                     return View(registerViewModel);
                 }
-                else if( accountService.GetByPhone(registerViewModel.PhoneNumber)!=null)
+                else if (accountService.GetByPhone(registerViewModel.PhoneNumber) != null)
                 {
                     ModelState.AddModelError("PhoneNumber", "This Phone Number Already Exist!!");
                     return View(registerViewModel);
@@ -44,19 +39,19 @@ namespace HRSystem.Controllers
                 IdentityResult result = await accountService.Create(registerViewModel);
                 if (!result.Succeeded)
                 {
-                  
+
                     return View(registerViewModel);
                 }
                 return RedirectToAction("Login");
 
             }
-    
+
             return View(registerViewModel);
         }
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login()
-        {   
+        {
             return View();
         }
         [HttpPost]
@@ -66,16 +61,16 @@ namespace HRSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                Hr hr =await accountService.GetByEmail(loginViewModel.Email);
+                Hr hr = await accountService.GetByEmail(loginViewModel.Email);
                 if (hr == null)
                 {
                     ModelState.AddModelError("Email", "This Email Not Found!!");
                     return View(loginViewModel);
                 }
-                else if (await accountService.CheckPassword(hr,loginViewModel.passwrod))
+                else if (await accountService.CheckPassword(hr, loginViewModel.passwrod))
                 {
-                  await signInManager.SignInAsync(hr,loginViewModel.RemeberMe);
-                    return RedirectToAction("Index","Home");
+                    await signInManager.SignInAsync(hr, loginViewModel.RemeberMe);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -88,9 +83,10 @@ namespace HRSystem.Controllers
             return View();
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
-           await signInManager.SignOutAsync();
+            await signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
         public IActionResult AccessDenied()

@@ -24,7 +24,7 @@ namespace HRSystem.Controllers
             return Json(employee);
         }
         [HttpGet]
-        //[Authorize(Permissions.Employee.View)]
+        [Authorize(Permissions.Employee.View)]
         public IActionResult Details(int id)
         {
             Employee employee = employeeService.GetEmployeeById(id);
@@ -34,7 +34,7 @@ namespace HRSystem.Controllers
             return NotFound();
         }
         [HttpGet]
-        //[Authorize(Permissions.Employee.Create)]
+        [Authorize(Permissions.Employee.Create)]
         public IActionResult Add()
         {
             ViewBag.DeptList = employeeService.GetAllDepartment();
@@ -44,7 +44,7 @@ namespace HRSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Permissions.Employee.Create)]
+        [Authorize(Permissions.Employee.Create)]
         public IActionResult Add(EmployeeViewModel employeeViewModel)
         {
             if (ModelState.IsValid)
@@ -87,7 +87,7 @@ namespace HRSystem.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Permissions.Employee.Edit)]
+        [Authorize(Permissions.Employee.Edit)]
         public IActionResult Edit(int id)
         {
             EmployeeViewModel employeeViewModel = employeeService.GetViewModel(id);
@@ -120,7 +120,7 @@ namespace HRSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Permissions.Employee.Edit)]
+        [Authorize(Permissions.Employee.Edit)]
         public IActionResult Edit(EmployeeViewModel employeeViewModel)
         {
             if (ModelState.IsValid)
@@ -153,7 +153,7 @@ namespace HRSystem.Controllers
             return View(employeeViewModel);
         }
         [HttpGet]
-        //[Authorize(Permissions.Employee.Delete)]
+        [Authorize(Permissions.Employee.Delete)]
         public IActionResult Delete(int id)
         {
             employeeService.Delete(id);

@@ -15,25 +15,10 @@ namespace HRSystem.Controllers
             this.attendanceService = attendanceService;
         }
 
-        #region Preformance Space 
-
-
-
-
-
-
-
-
-
-        #endregion
-
-
-
-
 
 
         [HttpGet]
-
+        [Authorize(Permissions.Salary.View)]
         public IActionResult SalaryReport(int? empId, DateTime? datemonth)
 
         {
@@ -43,7 +28,6 @@ namespace HRSystem.Controllers
             List<SalaryWithAttend_Emp_GenSettingsVM> ListOfEmployees = salaryService.SalaryReport();
 
             //   List<dateformual> DateRange = attendanceService.GetDateformuals();
-
 
             if (empId.HasValue && datemonth != null)
             {
@@ -102,6 +86,7 @@ namespace HRSystem.Controllers
 
 
         [HttpGet]
+        [Authorize(Permissions.Salary.View)]
         public IActionResult EmpolyeeSalaryReport(int id, int targetM, int targetY)
         {
 

@@ -17,6 +17,8 @@ namespace HRSystem.Controllers
             this.userManager = userManager;
         }
         [HttpGet]
+        [Authorize(Permissions.chat.View)]
+
         public async Task<IActionResult> Index()
         {
             if (User.Identity.Name == null)

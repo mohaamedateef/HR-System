@@ -6,19 +6,22 @@ namespace HRSystem.Controllers
     {
         private readonly IGeneralSettingService GeneralService;
         private readonly IWeeklyHolidayService WeeklyHolidayService;
-        public GeneralSettingController(IGeneralSettingService GeneralService,IWeeklyHolidayService WeeklyHolidayService)
+        public GeneralSettingController(IGeneralSettingService GeneralService, IWeeklyHolidayService WeeklyHolidayService)
         {
             this.GeneralService = GeneralService;
             this.WeeklyHolidayService = WeeklyHolidayService;
 
         }
         [HttpGet]
+        [Authorize(Permissions.generalSetting.View)]
         public IActionResult Index()
         {
             return View(GeneralService.GetGeneralSettingViewModel());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Permissions.generalSetting.Create)]
+
         public IActionResult Save(GeneralSettingViewModel NewGeneralSetting)
         {
             if (ModelState.IsValid)

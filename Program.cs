@@ -3,17 +3,17 @@ namespace HRSystem
 {
     public class Program
     {
-        
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-                        builder.Services.Configure<SecurityStampValidatorOptions>(option =>
-            {
-                option.ValidationInterval = TimeSpan.Zero;
-            });
+            builder.Services.Configure<SecurityStampValidatorOptions>(option =>
+{
+    option.ValidationInterval = TimeSpan.Zero;
+});
             //DBContext + Identity Dbcontext Injaction
             builder.Services.AddDbContext<HRDbContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("HrDB")));
@@ -61,6 +61,7 @@ namespace HRSystem
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints => endpoints.MapHub<ChatHub>("OnlineChat"));
             app.MapControllerRoute(
                 name: "default",

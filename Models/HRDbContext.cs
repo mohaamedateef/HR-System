@@ -20,9 +20,8 @@
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Salary> Salaries { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
-        public DbSet<ExceptionAttendance> Exceptions { get; set; } 
+        public DbSet<ExceptionAttendance> Exceptions { get; set; }
         public DbSet<WeeklyHoliday> WeeklyHolidays { get; set; }
         public DbSet<GeneralSetting> GeneralSettings { get; set; }
         public DbSet<UsersMessages> Messages { get; set; }
@@ -30,7 +29,6 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WeeklyHoliday>().HasKey(c => new { c.GeneralId, c.Day });
-            modelBuilder.Entity<Employee>().Property(c => c.DeptId).HasDefaultValue(1);
             base.OnModelCreating(modelBuilder);
         }
     }

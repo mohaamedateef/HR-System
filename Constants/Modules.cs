@@ -5,9 +5,13 @@
         employee,
         chat,
         generalSetting,
-        permissions,
-        group,
+        permission,
+        user,
         attendance,
         salaryReport,
+        department,
+        exception
+
+
     }
 }
