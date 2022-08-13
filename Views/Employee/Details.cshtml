@@ -11,8 +11,15 @@
           <p class="text-primary text-center py-1 px-5">Employee</p>
           </div>
           <div class="field rounded-2 mb-2 p-2">
-            <p>Department Name</p>
-            <p>@Model.Department.Name</p>
+            <p>Department</p>
+            @if(@Model.DeptId==0)
+            {
+                <p>No Department</p>
+            }
+            else
+            {
+                <p>@Model.Department.Name</p>    
+            }
           </div>
           <div class="field rounded-2 mb-2 p-2">
             <p>Salary</p>

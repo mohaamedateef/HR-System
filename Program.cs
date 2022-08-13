@@ -3,6 +3,7 @@ namespace HRSystem
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -45,8 +46,8 @@ namespace HRSystem
             builder.Services.AddScoped<IChatService, ChatService>();
             //this two services for authorization , please don't delete them
             //**************
-            //builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
-            //builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             //**************
 
             var app = builder.Build();

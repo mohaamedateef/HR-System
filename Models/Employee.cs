@@ -1,4 +1,6 @@
-﻿namespace HRSystem.Models
+﻿using System.ComponentModel;
+
+namespace HRSystem.Models
 {
     public class Employee
     {
@@ -19,14 +21,11 @@
 
         public string NationalId { get; set; }
         public string Gender { get; set; }
-
         [Column(TypeName = "datetime")]
         [DataType(DataType.Date)]
-
         public DateTime ContractDate { get; set; }
         [Column(TypeName = "datetime")]
         [DataType(DataType.Date)]
-
         public DateTime BirthDate { get; set; }
         [ForeignKey("Department")]
         public int? DeptId { get; set; }

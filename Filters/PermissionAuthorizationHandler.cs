@@ -11,7 +11,7 @@
         {
             if (context.User == null)
                 return;
-            var canAccess = context.User.Claims.Any(c => c.Type == "Permission" && c.Value == requirement.Permission);
+            bool canAccess = context.User.Claims.Any(c => c.Type == "Permission" && c.Value == requirement.Permission);
 
             if (canAccess)
             {

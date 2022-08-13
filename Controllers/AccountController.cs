@@ -18,6 +18,7 @@ namespace HRSystem.Controllers
             return View();
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
@@ -25,6 +26,7 @@ namespace HRSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
+        [Authorize(Permissions.Employee.Create)]
         public async Task< IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid)

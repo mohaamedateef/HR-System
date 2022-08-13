@@ -45,8 +45,10 @@
         <div class="sidebar-content">
           <div class="nav-container">
              <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-                <li class="nav-item home"><a href="#"><i class="icon-home"></i><span data-i18n=""
+                <li class="nav-item home"><a href="/Home/Index"><i class="icon-home"></i><span data-i18n=""
                    class="menu-title">Dashboard</span></a>
+                </li>
+                <li class="nav-item"><a href="/Department/Index"><i class="icon-puzzle"></i>Departments</a>
                 </li>
                 <li class="has-sub nav-item">
                    <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title"> Employees</span></a>
@@ -90,7 +92,7 @@
              </ul>
           </div>
        </div>
-        <div class="sidebar-background" style="background-image:url(../img/sidebar-bg/04.jpg)"></div>
+        <div class="sidebar-background" id="sidebar"></div>
       </div>
 
 
@@ -409,5 +411,9 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.7/signalr.min.js" integrity="sha512-Aijk+ipiP35gqQx1jTDzb7U4PceIAXjqSuCchQ+Wb4GTM7gAKK9f9K5aJxLxCbEIpmHB/zeYBOX/D9UqswZ6vQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
-  </body>
+    <script>
+        var sidebar = document.getElementById("sidebar")
+        sidebar.style.backgroundImage = 'Url(~/app-assets/img/sidebar-bg/01.jpg)'
+    </script>  
+</body>
 </html>
