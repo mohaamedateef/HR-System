@@ -15,7 +15,6 @@
                             <form asp-action="SalaryReport" method="get">
                                 <div class="form-group">
                                     <label > Employee Name </label>
-                                    @*<input type="number" value=@ViewBag.empId  name="empId" />*@
                                      <select name="empId" value=@ViewBag.empID asp-items="@(new SelectList(ViewBag.emplist,"Id","Name"))">
                                          <option></option>
                                       </select>
